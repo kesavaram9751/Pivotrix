@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#8a4cfc",
+                        "primary": "#004ac6",
+                        "tertiary-fixed-dim": "#bec6e0",
+                        "outline-variant": "#c3c6d7",
+                        "on-tertiary-container": "#eef0ff",
+                        "on-secondary-container": "#fffbff",
+                        "on-tertiary-fixed-variant": "#3f465c",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#d2bbff",
+                        "surface-bright": "#f9f9ff",
+                        "on-secondary-fixed": "#25005a",
+                        "background": "#f9f9ff",
+                        "inverse-on-surface": "#ecf1ff",
+                        "surface-container-low": "#f0f3ff",
+                        "on-secondary-fixed-variant": "#5a00c6",
+                        "surface-variant": "#d8e3fb",
+                        "primary-fixed": "#dbe1ff",
+                        "tertiary": "#4d556b",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#dae2fd",
+                        "on-primary": "#ffffff",
+                        "on-background": "#111c2d",
+                        "on-tertiary-fixed": "#131b2e",
+                        "outline": "#737686",
+                        "on-primary-fixed": "#00174b",
+                        "surface-container": "#e7eeff",
+                        "surface": "#f9f9ff",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#d8e3fb",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "surface-tint": "#0053db",
+                        "surface-dim": "#cfdaf2",
+                        "inverse-surface": "#263143",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#b4c5ff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#712ae2",
+                        "on-primary-container": "#eeefff",
+                        "primary-container": "#2563eb",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#656d84",
+                        "on-surface": "#111c2d",
+                        "surface-container-high": "#dee8ff",
+                        "secondary-fixed": "#eaddff",
+                        "on-surface-variant": "#434655",
+                        "on-primary-fixed-variant": "#003ea8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .signature-gradient {
+            background: linear-gradient(135deg, #004ac6 0%, #712ae2 100%);
+        }
+
+        .asymmetric-bleed {
+            margin-right: -10%;
+        }
+    </style>
+</head>
+
+<body class="bg-background font-body text-on-background selection:bg-primary-fixed selection:text-on-primary-fixed">
+    <!-- Header Component -->
+<div id="site-header"></div>
+    <main>
+        <!-- Hero Section -->
+        <section class="relative pt-20 pb-32 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                <div class="lg:col-span-7 z-10">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant/15 mb-8">
+                        <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                        <span class="text-xs font-label font-bold tracking-wider uppercase text-on-surface-variant"
+                            style="">Outcome-Based Architecture</span>
+                    </div>
+                    <h1 class="font-headline text-6xl md:text-7xl font-extrabold tracking-tighter text-on-surface leading-tight mb-8"
+                        style="">
+                        OKR Based Consulting&nbsp;<div>&nbsp;That <span class="text-primary italic" style="">Drive
+                                Revenue</span>.
+                        </div>
+                    </h1>
+                    <p class="text-xl text-on-surface-variant leading-relaxed mb-10 max-w-2xl" style="">
+                        Stop measuring activities. Start measuring impact. We build high-precision OKR systems for
+                        scale-ups with a radical "skin in the game" performance model.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button
+                            class="px-8 py-4 signature-gradient text-white font-headline font-bold rounded-lg shadow-xl shadow-primary/25 text-lg hover:opacity-90 transition-all flex items-center justify-center gap-2"
+                            style="">
+                            Transform Your Strategy
+                            <span class="material-symbols-outlined" style="">arrow_forward</span>
+                        </button>
+                        <div class="flex items-center gap-3 px-6 py-4">
+                            <div class="flex -space-x-2">
+                                <img class="w-10 h-10 rounded-full border-2 border-surface"
+                                    data-alt="portrait of a professional executive male with glasses and a friendly smile in a corporate setting"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhErR2OEtxBYrA_RbGfHcjs0AtnTkXB45HVAZ-M2MvoxBMmqZa70WvxzEbYLN9F-o8L4iiPk6FNTYfg9igMaol8-F-PQyuf8J0gTjPc3mQbFVfZisKQAENcos6saNGcUbFGO74H5_FUXKt2YSwRmoaElt0x8NYxlbh3WheeNZN_WQLM-TnXR0Hr9UExOsrf0D8PrYtBzeSpyMrwUsMA1_KyIGokRBuml4WrkNOcHGNSk7EsXry34bwByzx8FgWeZ9jILGB5qPAIweF"
+                                    style="">
+                                <img class="w-10 h-10 rounded-full border-2 border-surface"
+                                    data-alt="close up of a professional woman with a warm expression wearing a stylish blazer in a bright office"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdi5lbYJx7HIkG7vvc-YjcgfsYVbQnO5rSmqeATsihbhqcqPWPkeI15Eq9BfhCc80m8tGbb-1_Md35pvC8xYBWmcwPqGvcC02qyKGYcHdbeOkaxITAZxyx5q6WUkX3nUobep5tp4xJeYtaO28XSp_WsJz0TpGhrSsZFZ-P99Udm6dL4gCPe1KkRrZC9mtiVP-12pRqcsT_n8qoNf89etKtvkEzKWe-gjwewDdbG_qiTOG7Q2FkE7PD3Lnhr6VVJYKL8A_vPnHPYYzT"
+                                    style="">
+                                <img class="w-10 h-10 rounded-full border-2 border-surface"
+                                    data-alt="executive male with short hair wearing a navy suit and smiling professionally against a neutral background"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDr0o0GlB883eD3wNA-PbrfbKO_5Z8bwni7Fdrjdrp2hdMpOHzsIGCQ4f_515xIe3kJVsCpd0FV-6jOgRp_GtKVnCcjzK8clk8DqxWSCWCHaBIq2R9E-vyeKnKwY5D0eYWyd0nma0aZczxi4u4bY_6mcYk8xXpbD4se3ARXMHUpYl_Hwet2LILogzb7ouLiL2lXMIGWeFuIpSZjUhIULfC0LCzZiH_EtLb7ITXaUXrxMlUBlDDvPDcD_6PZkRNjzeRiDGrbH2I-F2TL"
+                                    style="">
+                            </div>
+                            <span class="text-sm font-label font-semibold text-on-surface-variant" style="">Trusted by
+                                40+ Scale-ups</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-5 relative">
+                    <div
+                        class="asymmetric-bleed aspect-square bg-surface-container-low rounded-3xl overflow-hidden relative shadow-2xl">
+                        <img class="w-full h-full object-cover mix-blend-overlay opacity-80"
+                            data-alt="Modern high-precision data dashboard showing strategic OKR growth charts and performance tracking metrics in a clean blue professional interface"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh58jW7B4ABv3nwCiy_euVebXkyzURpjx6LyzF1w8bvUjIfpxyDoFx1mNcsKsdBTiAUKEQE9WSmkG3PT9XDlOb-PWkuOtjvqe3tZDjT2WsGtW2FArzbEIejcJfJFDFPTb1nv15L7qyQfm38GF-leSWQE53LNhPJ9-MSIp8beZN4sOIGOwOTFkXBDdDspsqFLYK4JzIZwg6SnHyAvx-V1mzCyhbBuaYMK6Shejh_5Ibo5ZvtC3TaoY_bS3b9ODs4FB5pS5FyHOnDu9Y"
+                            style="">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent"></div>
+                        <div
+                            class="absolute bottom-8 left-8 right-8 p-6 glass-nav bg-white/20 rounded-xl border border-white/30">
+                            <div class="text-on-surface font-headline font-bold text-lg mb-1" style="">Skin in the game
+                                consulting</div>
+                            <div class="text-on-surface-variant text-sm" style="">We charge you only when you win.
+                                Period.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- Trusted By Section -->
+        <section class="py-12 bg-surface-container-lowest border-y border-outline-variant/10">
+            <div class="max-w-7xl mx-auto px-8">
+                <div class="flex flex-col items-center gap-8">
+                    <p class="text-[10px] md:text-xs font-label font-bold uppercase tracking-[0.2em] text-on-surface-variant/60 text-center"
+                        style="">
+                        Trusted by Forward-Thinking Organizations
+                    </p>
+                    <div
+                        class="w-full flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-40 grayscale">
+                        <!-- Placeholder Logo 1 -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 bg-on-surface-variant rounded-sm"></div>
+                            <span class="font-headline font-bold text-xl text-on-surface-variant tracking-tighter"
+                                style="">EQUINOX</span>
+                        </div>
+                        <!-- Placeholder Logo 2 -->
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 bg-on-surface-variant rounded-full"></div>
+                            <span class="font-headline font-bold text-xl text-on-surface-variant tracking-tighter"
+                                style="">NUCLEUS</span>
+                        </div>
+                        <!-- Placeholder Logo 3 -->
+                        <div class="flex items-center gap-2">
+                            <div
+                                class="w-0 h-0 border-l-[16px] border-l-transparent border-r-[16px] border-r-transparent border-b-[28px] border-b-on-surface-variant">
+                            </div>
+                            <span class="font-headline font-bold text-xl text-on-surface-variant tracking-tighter"
+                                style="">APEX</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Social Proof / Metrics -->
+        <section class="bg-surface-container-low py-12">
+            <div class="max-w-7xl mx-auto px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="flex flex-col">
+                        <span class="text-4xl font-headline font-extrabold text-primary mb-1" style="">Our Customers
+                            have seen</span>
+                        <span class="text-xs font-label uppercase tracking-widest text-on-surface-variant font-bold"
+                            style=""><br></span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-4xl font-headline font-extrabold text-primary mb-1" style=""><br></span>
+                        <span class="text-xs font-label uppercase tracking-widest text-on-surface-variant font-bold"
+                            style=""><br></span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-4xl font-headline font-extrabold text-primary mb-1" style="">3.2x</span>
+                        <span class="text-xs font-label uppercase tracking-widest text-on-surface-variant font-bold"
+                            style="">Execution Velocity</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-4xl font-headline font-extrabold text-primary mb-1" style="">100%</span>
+                        <span class="text-xs font-label uppercase tracking-widest text-on-surface-variant font-bold"
+                            style="">Skin-in-the-game</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Service Breakdown (Bento Style) -->
+        <section class="py-32">
+            <div class="max-w-7xl mx-auto px-8">
+                <div class="mb-20 max-w-2xl">
+                    <h2 class="text-4xl font-headline font-extrabold tracking-tight text-on-surface mb-6" style="">
+                        Precision Execution Model</h2>
+                    <p class="text-lg text-on-surface-variant" style="">We don't sell decks. We install engines. Our
+                        outcome-based architecture follows a strict, high-cadence rhythm designed for maximum ROI.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[600px]">
+                    <!-- Audit -->
+                    <div
+                        class="md:col-span-8 bg-surface-container-lowest rounded-3xl p-10 flex flex-col justify-between group hover:bg-surface-container transition-colors duration-500">
+                        <div>
+                            <div
+                                class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-primary" data-icon="troubleshoot"
+                                    style="">troubleshoot</span>
+                            </div>
+                            <h3 class="text-2xl font-headline font-bold text-on-surface mb-4" style="">Strategic Audit
+                                &amp; Gap Analysis</h3>
+                            <p class="text-on-surface-variant leading-relaxed max-w-md" style="">We identify the
+                                friction between your current strategy and operational reality. No fluff—just hard data
+                                on where revenue is leaking.</p>
+                        </div>
+                        <div class="flex items-center gap-4 text-primary font-bold text-sm" style="">
+                            EXPLORE AUDIT MODEL <span class="material-symbols-outlined" style="">north_east</span>
+                        </div>
+                    </div>
+                    <!-- Cascading -->
+                    <div
+                        class="md:col-span-4 bg-surface-container-high rounded-3xl p-10 flex flex-col justify-between overflow-hidden relative">
+                        <div class="z-10">
+                            <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center mb-6">
+                                <span class="material-symbols-outlined text-secondary" data-icon="account_tree"
+                                    style="">account_tree</span>
+                            </div>
+                            <h3 class="text-2xl font-headline font-bold text-on-surface mb-4" style="">Cascading
+                                Architecture</h3>
+                            <p class="text-on-surface-variant leading-relaxed" style="">Connecting C-Suite vision to
+                                individual output with zero signal loss.</p>
+                        </div>
+                        <div class="absolute -right-8 -bottom-8 opacity-20 transform rotate-12">
+                            <span class="material-symbols-outlined text-[180px] text-primary" data-icon="hive"
+                                style="">hive</span>
+                        </div>
+                    </div>
+                    <!-- Sprints -->
+                    <div
+                        class="md:col-span-4 signature-gradient rounded-3xl p-10 flex flex-col justify-between text-white">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center mb-6">
+                                <span class="material-symbols-outlined text-white" data-icon="bolt" style="">bolt</span>
+                            </div>
+                            <h3 class="text-2xl font-headline font-bold mb-4" style="">Velocity Sprints</h3>
+                            <p class="text-white/80 leading-relaxed text-sm" style="">Bi-weekly recalibration cycles to
+                                ensure objectives stay aligned with market shifts.</p>
+                        </div>
+                        <div class="mt-8 flex items-center gap-2">
+                            <span class="text-xs font-label font-bold uppercase tracking-widest" style="">Active
+                                Monitoring</span>
+                        </div>
+                    </div>
+                    <!-- Outcome Based Card -->
+                    <div
+                        class="md:col-span-8 bg-inverse-surface rounded-3xl p-10 flex flex-col md:flex-row items-center gap-10">
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-headline font-bold text-inverse-on-surface mb-4" style="">The
+                                Performance Mandate</h3>
+                            <p class="text-slate-400 mb-6" style="">Traditional consulting thrives on hours. Pivotrix
+                                thrives on wins. Our fees are tied to your specific KPIs.</p>
+                            <button
+                                class="bg-surface-bright text-on-surface px-6 py-3 rounded-lg font-headline font-bold text-sm"
+                                style="">View Success Clauses</button>
+                        </div>
+                        <div
+                            class="w-full md:w-1/3 aspect-video md:aspect-square bg-slate-800 rounded-2xl overflow-hidden shadow-inner">
+                            <img class="w-full h-full object-cover grayscale opacity-50 contrast-125"
+                                data-alt="monochrome abstract close-up of geometric glass architecture with sharp lines and high contrast shadows"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuANhr5S2bpnCVEOU7moHbSyDd-IkQKZu3IYLFp87imuLEgdExhmsxCsZAQQbc2MVRCkNH0PF3l8RwUNngwOuJvojHsSIGMHUkW1hDMCh8uPFRLOvJm2IByCNyD1Cjm3Q2Cef0j2SHu_XkWOFP1_dzUf78x9P5T7f22T4SESDzMh0aX8cUIUrX5cS7mUpk_ztC1Ajj0ScYOmCsgRRR9Ye8Z3pqs7FEJUvT1nuLEO_aPkjtRrh95ThLxYgOPGgQpQdA7ioTnm3aXMREKS"
+                                style="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Testimonial Section -->
+        <section class="py-32 bg-surface-container-lowest">
+            <div class="max-w-7xl mx-auto px-8">
+                <div class="relative max-w-4xl mx-auto text-center">
+                    <span
+                        class="material-symbols-outlined text-primary/20 text-8xl absolute -top-12 -left-12 select-none"
+                        data-icon="format_quote" style="">format_quote</span>
+                    <h2 class="text-3xl md:text-4xl font-headline font-extrabold italic text-on-surface leading-tight mb-10 relative z-10"
+                        style="">
+                        "Pivotrix didn't just give us a framework; they gave us a pulse. For the first time in three
+                        years, our executive team and our engineers are speaking the same language of value."
+                    </h2>
+                    <div class="flex flex-col items-center">
+                        <img class="w-16 h-16 rounded-full border-4 border-surface shadow-xl mb-4"
+                            data-alt="portrait of a confident female tech CEO with shoulder-length hair and modern glasses"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmoeyC4IS4HoHujAvkhle_haIkABJKT0yQTeIyc-EqH6OUNo-6S7I7CnLVr_0iFuR1qWWuIuktN-lQsJVVq4qD-RWVPckIojR--BnE2gEyyWt5LDD9NRb0xU0wZ8OR8OE03lV2LouSk_aaeVbMEpYHBgHQEvFffkJWcMGrKc-mBfAMwHUAmPqSmLYxGo8m8qYl2ZceoMGa83vMjDGsRGygsi6_XTp3Dn_qunpkbwbw06GDyapImmJ9F5k4UBEitiXIMlteV9xWBniL"
+                            style="">
+                        <span class="font-headline font-bold text-on-surface" style="">Sarah J. Chen</span>
+                        <span class="text-sm font-label text-on-surface-variant uppercase tracking-widest" style="">VP
+                            Strategy, Lumina Systems</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- CTA Section -->
+        <section class="py-24">
+            <div class="max-w-7xl mx-auto px-8">
+                <div
+                    class="bg-primary rounded-[2rem] p-12 md:p-20 relative overflow-hidden text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-12">
+                    <div
+                        class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-blue-500/30 via-transparent to-transparent">
+                    </div>
+                    <div class="relative z-10 max-w-xl">
+                        <h2 class="text-4xl md:text-5xl font-headline font-extrabold text-white mb-6" style="">Ready for
+                            outcome-based growth?</h2>
+                        <p class="text-xl text-blue-100/80" style="">Schedule a 30-minute win-mapping session with our
+                            lead architect. No sales pitch—just strategy.</p>
+                    </div>
+                    <div class="relative z-10">
+                        <button
+                            class="px-10 py-5 bg-white text-primary font-headline font-extrabold text-lg rounded-xl shadow-2xl hover:scale-105 transition-transform"
+                            style="">
+                            Book Your Win
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer Component -->
+<div id="site-footer"></div>
+
+<!-- Reusable Components -->
+<script src="components/header.js"></script>
+<script src="components/footer.js"></script>
+</body>
+
+</html>

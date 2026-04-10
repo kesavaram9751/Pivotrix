@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#001d33",
+                        "outline": "#72777f",
+                        "on-secondary-fixed-variant": "#43474e",
+                        "tertiary-container": "#d1e4ff",
+                        "on-tertiary-fixed": "#001d33",
+                        "inverse-surface": "#2f3033",
+                        "surface-container-highest": "#e2e2e6",
+                        "on-background": "#1a1c1e",
+                        "primary-container": "#d3e4ff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-dim": "#2563eb",
+                        "on-error": "#ffffff",
+                        "tertiary-dim": "#006495",
+                        "surface-container-low": "#f2f3f7",
+                        "surface-container": "#eceef2",
+                        "tertiary": "#006495",
+                        "secondary": "#535f70",
+                        "outline-variant": "#c2c7cf",
+                        "primary-fixed-dim": "#a8c8ff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#00496e",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#2563eb",
+                        "secondary-container": "#d7e3f7",
+                        "secondary-fixed-dim": "#bac7db",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#410002",
+                        "tertiary-fixed": "#d1e4ff",
+                        "primary-fixed": "#d3e4ff",
+                        "on-surface": "#1a1c1e",
+                        "inverse-on-surface": "#f1f0f4",
+                        "secondary-fixed": "#d7e3f7",
+                        "on-secondary-fixed": "#101c2b",
+                        "on-secondary-container": "#101c2b",
+                        "on-primary-fixed": "#001c38",
+                        "surface-variant": "#dee3eb",
+                        "surface-bright": "#f9f9fc",
+                        "inverse-primary": "#a8c8ff",
+                        "error-dim": "#ffb4ab",
+                        "background": "#f9f9fc",
+                        "on-primary-container": "#001c38",
+                        "surface-container-high": "#e8eaee",
+                        "primary": "#2563eb",
+                        "on-primary-fixed-variant": "#004786",
+                        "surface": "#f9f9fc",
+                        "on-surface-variant": "#43474e",
+                        "tertiary-fixed-dim": "#9cd0ff",
+                        "surface-dim": "#d9dbdf",
+                        "secondary-dim": "#bac7db",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.5rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .outcome-gradient {
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background antialiased overflow-x-hidden">
+    <!-- Header Component -->
+<div id="site-header"></div>
+    <main class="pt-16">
+        <!-- Hero Section -->
+        <section class="relative px-8 py-10 md:py-16 max-w-7xl mx-auto overflow-hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7">
+                    <span
+                        class="inline-block px-3 py-1 bg-primary-container text-primary font-bold text-xs uppercase tracking-[0.1em] mb-6 rounded"
+                        style="">
+                        Outcome-Based Performance
+                    </span>
+                    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.05] text-on-background mb-8"
+                        style="">
+                        Digital Marketing with <span class="text-primary italic" style="">Skin in the Game.</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-on-surface-variant max-w-xl leading-relaxed mb-10" style="">
+                        Precision growth driven by outcome-based metrics. We bridge the gap between abstract strategy
+                        and measurable revenue. You pay for performance, not promises.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button
+                            class="outcome-gradient text-on-primary px-8 py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 group transition-all hover:scale-[1.02]"
+                            style="">
+                            Start Your Growth Track
+                            <span class="material-symbols-outlined transition-transform group-hover:translate-x-1"
+                                style="">trending_up</span>
+                        </button>
+                        <button
+                            class="bg-transparent border border-outline text-primary px-8 py-4 rounded-lg font-bold text-lg hover:bg-surface-container-low transition-all"
+                            style="">
+                            View Case Studies
+                        </button>
+                    </div>
+                </div>
+                <div class="lg:col-span-5 relative">
+                    <div
+                        class="aspect-square rounded-xl bg-surface-container-low overflow-hidden border border-outline-variant/30 shadow-2xl relative">
+                        <img class="w-full h-full object-cover"
+                            data-alt="Modern high-contrast analytics dashboard on a sleek monitor with glowing blue data visualizations and financial growth charts"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAa3RhMRdWp5GqiLbIcYGG3hLdx7OCri-NWEDrI0FB3A8qrKO67I7gm1EfLs4Jyd1W6lCXBAX9dlQmnFXiUgmyiymWlz8n4g0Ni__AA2o_fQZbId-9KnVXcWzCSk94AkmkUt3VqVMGTho9pti35Dag_Vuh09axFYXDrSXYHMIK7r0wzhMhOZuThhQZgeSzXRLo2R5eNlj-CUpKEKlN-TQWQqk3QAyUWuofGMfHDwcMiKFgL9K1CQk1eKURVd5t8Pu5RLwMllhv0x-ny"
+                            style="">
+                        <div
+                            class="absolute bottom-6 left-6 right-6 bg-surface-container-lowest/90 backdrop-blur-md p-6 rounded-lg border border-outline-variant/15">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="font-bold text-sm tracking-widest text-primary uppercase" style="">Revenue
+                                    Signal</span>
+                                <span class="material-symbols-outlined text-primary" data-weight="fill"
+                                    style="">verified</span>
+                            </div>
+                            <div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+                                <div class="h-full outcome-gradient w-3/4"></div>
+                            </div>
+                            <div class="flex justify-between mt-2 font-bold text-xs">
+                                <span class="" style="">75% TO TARGET</span>
+                                <span class="text-primary" style="">+$1.2M</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- The Bento Logic Section -->
+        <section class="bg-surface-container-low py-24">
+            <div class="max-w-7xl mx-auto px-8">
+                <div class="mb-16">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-on-background mb-4" style="">Architectural
+                        Growth</h2>
+                    <p class="text-on-surface-variant max-w-2xl" style="">We don't buy traffic. We engineer financial
+                        outcomes through a calculated stack of performance levers.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- High Stakes Precision -->
+                    <div
+                        class="md:col-span-2 bg-surface-container-lowest p-10 rounded-xl border border-outline-variant/10 flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="w-12 h-12 rounded-lg bg-primary-container flex items-center justify-center mb-8">
+                                <span class="material-symbols-outlined text-primary" style="">analytics</span>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4 text-on-background" style="">Precision Growth</h3>
+                            <p class="text-on-surface-variant max-w-md mb-8" style="">Using proprietary attribution
+                                models, we identify the exact dollar-for-dollar return on every campaign. No dark
+                                social, no vanity metrics.</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-8 pt-8 border-t border-outline-variant/10">
+                            <div>
+                                <span class="block text-3xl font-black text-primary" style="">4.5x</span>
+                                <span class="text-xs font-bold uppercase tracking-widest opacity-60" style="">Avg
+                                    ROAS</span>
+                            </div>
+                            <div>
+                                <span class="block text-3xl font-black text-primary" style="">151%</span>
+                                <span class="text-xs font-bold uppercase tracking-widest opacity-60" style="">Increase
+                                    in Conv Rate</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Performance Fee Model -->
+                    <div
+                        class="bg-primary p-10 rounded-xl text-on-primary flex flex-col justify-between overflow-hidden relative">
+                        <div class="relative z-10">
+                            <h3 class="text-2xl font-bold mb-4" style="">The Payout Architecture</h3>
+                            <p class="opacity-90 leading-relaxed" style="">Our fee is tied to your profit. If we don't
+                                beat your baseline, we don't take a premium. Zero-risk scaling.</p>
+                        </div>
+                        <div class="relative z-10 mt-12">
+                            <span class="material-symbols-outlined text-6xl opacity-30"
+                                style="">currency_exchange</span>
+                        </div>
+                        <!-- Abstract texture -->
+                        <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-white/20 rounded-full blur-3xl"></div>
+                    </div>
+                    <!-- Content Authority -->
+                    <div class="bg-surface-container-highest p-10 rounded-xl border border-outline-variant/10">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-surface-container-lowest flex items-center justify-center mb-8">
+                            <span class="material-symbols-outlined text-primary" style="">article</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-on-background" style="">Outcome-Driven SEO</h3>
+                        <p class="text-on-surface-variant leading-relaxed" style="">Keywords don't pay bills.
+                            Intent-driven funnels that convert visitors into revenue pipeline do.</p>
+                    </div>
+                    <!-- Market Positioning -->
+                    <div
+                        class="md:col-span-2 bg-surface-container-lowest p-10 rounded-xl border border-outline-variant/10 relative overflow-hidden group">
+                        <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                            <div>
+                                <h3 class="text-2xl font-bold mb-4 text-on-background" style="">Paid Media Arbitrage
+                                </h3>
+                                <p class="text-on-surface-variant leading-relaxed mb-6" style="">Exploiting market
+                                    inefficiencies across Meta, Google, and LinkedIn to secure premium inventory at
+                                    architectural scale.</p>
+                                <a class="text-primary font-bold inline-flex items-center gap-2 group-hover:underline"
+                                    href="#" style="">
+                                    Analyze Your Spend <span class="material-symbols-outlined text-sm"
+                                        style="">arrow_forward</span>
+                                </a>
+                            </div>
+                            <div class="hidden md:block">
+                                <img class="rounded-lg shadow-xl border border-outline-variant/10"
+                                    data-alt="Abstract business growth chart with financial overlays and clean architectural lines in a professional setting"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkiEuGxMxWaPgI-TGB6-Begaqbooj4CM27dnW4ErPkyWCYIBjkKO0Xx04Dg9vqMQxbGsABpLPZ7Jshuj9eya6ibZge_VZWLQjDvqTGdnQRuGmzFBXfAmBGb8iwCVBOKtqLLZU71A9dr9XMsKhSFHUHgPGdjl-zNGGjecB7SzrUirLII7vSI6cQFfOpROjf4-DT5PYb4wB2dahEwlwLw1BlR1Qhngdh1v1EoxpCD_w3C_kRvQUAMvsNVeeIVQ7kmXN0pN2IH_9O4V7A"
+                                    style="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Outcome Meter Section -->
+        <section class="py-24 max-w-4xl mx-auto px-8 text-center">
+            <span class="text-xs font-black uppercase tracking-[0.2em] text-primary mb-6 block" style="">Real-Time
+                Performance Tracking</span>
+            <h2 class="text-4xl font-extrabold mb-12 text-on-background" style="">Current Client Average Target
+                Achievement</h2>
+            <div class="relative pt-8 pb-12">
+                <div class="h-3 w-full bg-surface-container-highest rounded-full overflow-hidden">
+                    <div class="h-full outcome-gradient w-[92%] relative">
+                        <div
+                            class="absolute right-0 top-1/2 -translate-y-1/2 w-6 h-6 bg-white rounded-full shadow-lg flex items-center justify-center border border-primary/20">
+                            <div class="w-2 h-2 bg-primary rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-between mt-6 px-2">
+                    <div class="text-left">
+                        <span class="block text-sm font-bold opacity-40 uppercase tracking-widest"
+                            style="">Baseline</span>
+                        <span class="text-lg font-black text-on-background" style="">$0.00</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="block text-sm font-bold text-primary uppercase tracking-widest" style="">Current
+                            Outcome</span>
+                        <span class="text-2xl font-black text-primary" style="">92% OF TARGET</span>
+                    </div>
+                </div>
+            </div>
+            <p class="text-lg text-on-surface-variant italic font-medium" style="">
+                "Pivotrix didn't just manage our ads; they re-architected our entire revenue model. We hit our Q4 target
+                by November."
+            </p>
+        </section>
+        <!-- CTA Section -->
+        <section class="px-8 pb-24">
+            <div
+                class="max-w-7xl mx-auto outcome-gradient rounded-2xl p-12 md:p-20 text-center relative overflow-hidden">
+                <div class="relative z-10 max-w-3xl mx-auto">
+                    <h2 class="text-4xl md:text-5xl font-black text-on-primary mb-8 leading-tight" style="">Ready to
+                        Stop Paying for Promises?</h2>
+                    <p class="text-on-primary/80 text-lg mb-12" style="">Get an outcome audit. We'll show you exactly
+                        where your current agency is losing revenue and how we'll recover it. You pay us only when you
+                        generate revenue.</p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <button
+                            class="bg-white text-primary px-10 py-5 rounded-lg font-black text-xl hover:shadow-xl transition-all"
+                            style="">
+                            Start Your Growth Track
+                        </button>
+                        <button
+                            class="bg-transparent border-2 border-white text-white px-10 py-5 rounded-lg font-bold text-xl hover:bg-white/10 transition-all"
+                            style="">
+                            Book Strategic Audit
+                        </button>
+                    </div>
+                </div>
+                <!-- Abstract Design Elements -->
+                <div class="absolute top-0 left-0 w-64 h-64 bg-white/10 blur-[100px] -translate-x-1/2 -translate-y-1/2">
+                </div>
+                <div
+                    class="absolute bottom-0 right-0 w-96 h-96 bg-black/5 blur-[120px] translate-x-1/4 translate-y-1/4">
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer Component -->
+<div id="site-footer"></div>
+
+<!-- Reusable Components -->
+<script src="components/header.js"></script>
+<script src="components/footer.js"></script>
+</body>
+
+</html>

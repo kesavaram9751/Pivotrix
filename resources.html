@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Resources | Pivotrix Consulting</title>
+  <!-- Google Fonts: Manrope & Inter -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;family=Manrope:wght@200..800&amp;display=swap"
+    rel="stylesheet">
+  <!-- Material Symbols -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-surface": "#263143",
+            "error-container": "#ffdad6",
+            "surface-dim": "#cfdaf2",
+            "surface": "#f9f9ff",
+            "tertiary-fixed-dim": "#bec6e0",
+            "surface-container-lowest": "#ffffff",
+            "surface-bright": "#f9f9ff",
+            "on-primary-fixed-variant": "#003ea8",
+            "on-error": "#ffffff",
+            "on-tertiary-container": "#eef0ff",
+            "outline-variant": "#c3c6d7",
+            "on-secondary": "#ffffff",
+            "tertiary-container": "#656d84",
+            "on-error-container": "#93000a",
+            "tertiary": "#4d556b",
+            "primary-fixed-dim": "#b4c5ff",
+            "on-primary-container": "#eeefff",
+            "on-tertiary-fixed": "#131b2e",
+            "on-secondary-fixed-variant": "#5a00c6",
+            "on-primary": "#ffffff",
+            "surface-tint": "#0053db",
+            "surface-container": "#e7eeff",
+            "primary-container": "#2563eb",
+            "surface-container-low": "#f0f3ff",
+            "on-primary-fixed": "#00174b",
+            "surface-variant": "#d8e3fb",
+            "primary-fixed": "#dbe1ff",
+            "on-tertiary-fixed-variant": "#3f465c",
+            "on-tertiary": "#ffffff",
+            "on-background": "#111c2d",
+            "on-surface-variant": "#434655",
+            "on-secondary-container": "#fffbff",
+            "background": "#f9f9ff",
+            "on-secondary-fixed": "#25005a",
+            "primary": "#004ac6",
+            "error": "#ba1a1a",
+            "surface-container-high": "#dee8ff",
+            "surface-container-highest": "#d8e3fb",
+            "secondary-fixed-dim": "#d2bbff",
+            "secondary": "#712ae2",
+            "inverse-primary": "#b4c5ff",
+            "secondary-container": "#8a4cfc",
+            "on-surface": "#111c2d",
+            "secondary-fixed": "#eaddff",
+            "outline": "#737686",
+            "inverse-on-surface": "#ecf1ff",
+            "tertiary-fixed": "#dae2fd"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "headline": ["Manrope"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    .font-headline {
+      font-family: 'Manrope', sans-serif;
+    }
+
+    .tonal-transition-surface-low {
+      background: linear-gradient(to bottom, rgba(249, 249, 255, 0.8), rgba(240, 243, 255, 0.8));
+    }
+  </style>
+</head>
+
+<body class="bg-surface text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+  <!-- Header Component -->
+<div id="site-header"></div>
+  <main class="pt-32 pb-24">
+    <!-- Hero Section -->
+    <section class="max-w-7xl mx-auto px-8 mb-20">
+      <div class="max-w-3xl">
+        <span
+          class="inline-block py-1 px-3 rounded-full bg-surface-container-high text-primary font-label text-xs font-bold tracking-widest uppercase mb-6"
+          style="">Resource Hub</span>
+        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter text-on-surface mb-8 leading-[1.1]" style="">
+          Resources&nbsp; for <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary"
+            style="">Accelerated Growth.</span>
+        </h1>
+        <p class="text-xl text-on-surface-variant leading-relaxed font-body" style="">
+          We equip you with the frameworks used by our lead architects to drive measurable revenue. Outcome-based
+          consulting starts with precision tools.
+        </p>
+      </div>
+    </section>
+    <!-- Main Content Area: Bento-inspired Layout -->
+    <section class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-12 gap-6">
+      <!-- OKR Exercise Template: Primary Visual Card -->
+      <div
+        class="md:col-span-8 bg-surface-container-low rounded-xl overflow-hidden group flex flex-col md:flex-row transition-all hover:shadow-2xl hover:shadow-primary/5">
+        <div class="md:w-1/2 p-10 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+              <span class="material-symbols-outlined text-primary" data-icon="architecture" style="">architecture</span>
+            </div>
+            <h2 class="text-3xl font-bold text-on-surface mb-4 leading-tight" style="">OKR Exercise Template</h2>
+            <p class="text-on-surface-variant mb-8 leading-relaxed" style="">
+              A comprehensive tool designed for high-stakes alignment workshops. Standardize how your leadership teams
+              define objectives and key results.
+            </p>
+          </div>
+          <div class="flex items-center gap-4">
+            <button
+              class="flex items-center gap-2 bg-primary-container text-on-primary-container px-6 py-3 rounded-lg font-headline font-bold text-sm transition-all hover:translate-x-1"
+              style="">
+              Download Template
+              <span class="material-symbols-outlined text-sm" data-icon="download" style="">download</span>
+            </button>
+          </div>
+        </div>
+        <div class="md:w-1/2 relative bg-surface-container-highest min-h-[300px]">
+          <img class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60"
+            data-alt="Professional workshop setting with post-it notes and structured strategy diagrams on a glass wall in a bright modern office"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaKMK99v889rzczualXk3U88LOovYRxKxZEDPAKkOVLYV4zCQp3qq30RmvyAgaxhyv1CvyzEGh6muB6VRYOWYqyQe1cZh4GoN3z3VIC0wq4ZCAxMPBxY4aipxGAbEJNbNtKbRlJNtZXRZ8ZPBwLkmZf6cFv6uRDicgitz4NIvbRTOsGXDNZmGnrzxuH2CUY-OAVzcnM9ZY6YqY6lQiTvt4liD0Xfj9DFt1Ebg-yUJxmIpbkU5iqGh47DKkR_K9Avzxy5yPko8_2lbE"
+            style="">
+          <div class="absolute inset-0 bg-gradient-to-tr from-surface-container-low via-transparent to-transparent">
+          </div>
+        </div>
+      </div>
+      <!-- OKR Cheat Sheet: Accent Card -->
+      <div
+        class="md:col-span-4 bg-inverse-surface rounded-xl p-10 flex flex-col justify-between transition-all hover:shadow-2xl">
+        <div>
+          <div class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center mb-6">
+            <span class="material-symbols-outlined text-primary-fixed" data-icon="bolt" style="">bolt</span>
+          </div>
+          <h2 class="text-2xl font-bold text-white mb-4" style="">OKR Cheat Sheet</h2>
+          <p class="text-slate-400 mb-8 leading-relaxed text-sm" style="">
+            The architect's quick-reference guide. Learn the syntax of high-impact OKRs in under 5 minutes.
+          </p>
+        </div>
+        <button
+          class="w-full flex items-center justify-center gap-2 bg-white text-on-background px-6 py-3 rounded-lg font-headline font-bold text-sm hover:bg-primary-fixed transition-colors"
+          style="">
+          Download Cheat Sheet
+          <span class="material-symbols-outlined text-sm" data-icon="file_download" style="">file_download</span>
+        </button>
+      </div>
+      <!-- Secondary Resource: Book Teaser (Asymmetric Placeholder) -->
+      <div class="md:col-span-4 bg-surface-container-high rounded-xl p-8 flex flex-col gap-4">
+        <span class="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant uppercase" style="">Coming
+          Soon</span>
+        <h3 class="text-xl font-bold text-on-surface" style="">The Pivotrix Playbook</h3>
+        <p class="text-sm text-on-surface-variant" style="">Our upcoming book on scaling digital operations through
+          precision engineering.</p>
+        <a class="mt-auto text-primary text-sm font-bold flex items-center gap-1 group" href="#" style="">
+          Learn more <span class="material-symbols-outlined text-xs transition-transform group-hover:translate-x-1"
+            data-icon="arrow_forward" style="">arrow_forward</span>
+        </a>
+      </div>
+      <!-- Supporting Resources: Bento Mini Grid -->
+      <div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-surface-container-lowest rounded-xl p-8 flex items-center gap-6">
+          <div class="w-14 h-14 bg-surface-container-high rounded-full flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-primary" data-icon="grid_view" style="">grid_view</span>
+          </div>
+          <div>
+            <h4 class="font-bold text-on-surface" style="">Strategy Canvas</h4>
+            <p class="text-xs text-on-surface-variant" style="">Visual alignment tool for quarterly planning.</p>
+          </div>
+        </div>
+        <div class="bg-surface-container-lowest rounded-xl p-8 flex items-center gap-6">
+          <div class="w-14 h-14 bg-surface-container-high rounded-full flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-primary" data-icon="analytics" style="">analytics</span>
+          </div>
+          <div>
+            <h4 class="font-bold text-on-surface" style="">Revenue Calculator</h4>
+            <p class="text-xs text-on-surface-variant" style="">Model the impact of OKR success on your bottom line.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- Footer Component -->
+<div id="site-footer"></div>
+
+<!-- Reusable Components -->
+<script src="components/header.js"></script>
+<script src="components/footer.js"></script>
+</body>
+
+</html>
