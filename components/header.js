@@ -119,6 +119,30 @@
       color: #2563eb;
       font-weight: 600;
     }
+
+    /* ── Mobile CTA styles ── */
+    .pivotrix-mobile-cta {
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      margin-top: 8px;
+      transition: all 0.2s ease;
+    }
+    .pivotrix-mobile-cta-primary {
+      background: #2563eb;
+      color: #fff;
+    }
+    .pivotrix-mobile-cta-secondary {
+      background: rgba(37, 99, 235, 0.05);
+      color: #2563eb;
+      border: 1.5px solid #2563eb;
+    }
   `;
   document.head.appendChild(styleTag);
 
@@ -152,10 +176,12 @@
 
       <!-- Right Actions -->
       <div class="flex items-center" style="gap:12px">
-        ${rightActionsHTML}
+        <div class="hidden md:flex items-center" style="gap:12px">
+          ${rightActionsHTML}
+        </div>
 
         <!-- Mobile Menu Toggle -->
-        <button id="mobile-menu-toggle" class="md:hidden" style="padding:8px;color:#64748b;background:none;border:none;cursor:pointer" aria-label="Toggle menu">
+        <button id="mobile-menu-toggle" class="md:hidden flex items-center justify-center h-10 w-10 rounded-lg hover:bg-surface-container-low transition-colors" style="color:#64748b;background:none;border:none;cursor:pointer" aria-label="Toggle menu">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
       </div>
@@ -171,14 +197,15 @@
             return `<a href="${link.href}" class="${cls}">${link.label}</a>`;
           })
           .join("\n")}
-        <div style="border-top:1px solid #e2e8f0;margin:8px 0"></div>
-        ${isBookOrResources 
-          ? `<a href="${amazonUrl}" target="_blank" class="pivotrix-mobile-link" style="font-family:'Manrope',sans-serif;color:#2563eb;font-weight:700">Get Your Copy</a>`
-          : `
-            <a href="#" onclick="window.triggerForm1(); return false;" class="pivotrix-mobile-link" style="font-family:'Manrope',sans-serif">Grow my Business</a>
-            <a href="https://calendly.com/pivotrix-info/30min" target="_blank" style="font-family:'Manrope',sans-serif;font-size:0.875rem;font-weight:700;color:#fff;background:#2563eb;text-align:center;padding:10px;border-radius:8px;text-decoration:none;margin-top:6px">Schedule a FREE Audit</a>
-          `
-        }
+        <div style="margin-top:16px;display:flex;flex-direction:column;gap:8px">
+          ${isBookOrResources 
+            ? `<a href="${amazonUrl}" target="_blank" class="pivotrix-mobile-cta pivotrix-mobile-cta-primary">Get Your Copy</a>`
+            : `
+              <a href="#" onclick="window.triggerForm1(); return false;" class="pivotrix-mobile-cta pivotrix-mobile-cta-secondary">Grow my Business</a>
+              <a href="https://calendly.com/pivotrix-info/30min" target="_blank" class="pivotrix-mobile-cta pivotrix-mobile-cta-primary">Schedule a FREE Audit</a>
+            `
+          }
+        </div>
       </div>
     </div>
   </nav>

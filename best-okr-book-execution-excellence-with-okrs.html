@@ -316,7 +316,6 @@
         input:where([type=button]),
         input:where([type=reset]),
         input:where([type=submit]) {
-            -webkit-appearance: button;
             background-color: transparent;
             background-image: none
         }
@@ -339,7 +338,6 @@
         }
 
         [type=search] {
-            -webkit-appearance: textfield;
             outline-offset: -2px
         }
 
@@ -421,7 +419,7 @@
         svg,
         video {
             display: block;
-            vertical-align: middle
+            /* vertical-align: middle */
         }
 
         img,
@@ -1539,7 +1537,7 @@
                     class="mb-6 inline-flex items-center px-3 py-1 rounded-full bg-primary-container text-on-primary-container text-xs font-bold tracking-widest uppercase">
                     New Release
                 </div>
-                <h1 class="text-6xl md:text-7xl font-extrabold tracking-tighter leading-[1.05] mb-6 text-on-background">
+                <h1 class="text-4xl md:text-7xl font-extrabold tracking-tighter leading-[1.05] mb-6 text-on-background">
                     Execution Excellence with OKRs</h1>
                 <p class="text-xl md:text-2xl text-on-surface-variant max-w-2xl mb-10 leading-relaxed">
                     The definitive guide to aligning teams and driving measurable growth with OKRs. Build a
@@ -1610,7 +1608,7 @@
         </div>
     </section>
     <!-- Features Bento Grid -->
-    <section class="py-24">
+    <section class="py-12 md:py-24">
         <div class="max-w-7xl mx-auto px-8">
             <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
                 <div class="max-w-2xl">
@@ -1625,7 +1623,7 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[600px]">
                 <div
-                    class="md:col-span-7 bg-surface-container-high rounded-xl p-10 flex flex-col justify-between group overflow-hidden relative">
+                    class="md:col-span-7 bg-surface-container-high rounded-xl p-6 md:p-10 flex flex-col justify-between group overflow-hidden relative">
                     <div class="relative z-10">
                         <span class="material-symbols-outlined text-4xl text-primary mb-6">bolt</span>
                         <h3 class="text-3xl font-bold mb-4">The Outcome-Driven Framework</h3>
@@ -1637,7 +1635,7 @@
                         data-alt="Close-up of a premium financial report"
                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5O-FJBWC_94TRd0ubloywb4hSfvx4vu13c_qM28Vkpt2VWB4KXxJJmpiKxfwBbe6z0Adc7evnSJFbrPNdeHXJ-tsh36GVPU9YsKsmrHYcjmDqX1QoDmJg1kj1yxxS68gIwGBIBR6ZUavDJhLIxmkhDVyYm8Xp9GCP3d84i___I614kNaKwsukS9Ax0y11SO61Zc4SwV3Laz56SSRxMflh93omcLIYiYRmhTk892YkT0r0KzVWTI-yVZp7okPTghLrjdzMRZ4iPDB7">
                 </div>
-                <div class="md:col-span-5 bg-primary-container/40 rounded-xl p-10 flex flex-col justify-between">
+                <div class="md:col-span-5 bg-primary-container/40 rounded-xl p-6 md:p-10 flex flex-col justify-between">
                     <div>
                         <span class="material-symbols-outlined text-4xl text-primary mb-6">group_work</span>
                         <h3 class="text-2xl font-bold mb-4">Radical Alignment</h3>
@@ -1649,13 +1647,14 @@
                         <div class="h-full bg-primary w-[85%] rounded-full"></div>
                     </div>
                 </div>
-                <div class="md:col-span-5 bg-tertiary text-on-tertiary rounded-xl p-10">
+                <div class="md:col-span-5 bg-tertiary text-on-tertiary rounded-xl p-6 md:p-10">
                     <span class="material-symbols-outlined text-4xl mb-6 text-primary">biotech</span>
                     <h3 class="text-2xl font-bold mb-4">Metric Precision</h3>
                     <p class="leading-relaxed opacity-90">Avoid vanity metrics. The blueprint teaches you to identify
                         the 3-4 Key Results that actually predict future growth.</p>
                 </div>
-                <div class="md:col-span-7 bg-surface rounded-xl p-10 border border-outline flex items-center gap-8">
+                <div
+                    class="md:col-span-7 bg-surface rounded-xl p-6 md:p-10 border border-outline flex items-center gap-8">
                     <div class="flex-1">
                         <span class="material-symbols-outlined text-4xl text-primary mb-6">architecture</span>
                         <h3 class="text-2xl font-bold mb-4">Management Checklists</h3>
@@ -1672,8 +1671,8 @@
     </section>
     <!-- Testimonials -->
     <!-- Templates CTA Section -->
-    <section class="py-24 relative overflow-hidden" id="templates">
-        <div class="max-w-7xl mx-auto px-8 bg-tertiary text-on-tertiary rounded-xl p-12 md:p-20 relative z-10">
+    <section class="py-12 md:py-24 relative overflow-hidden" id="templates">
+        <div class="max-w-7xl mx-auto px-8 bg-tertiary text-on-tertiary rounded-xl p-8 md:p-20 relative z-10">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div>
                     <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter mb-6 leading-tight">Ready to Run

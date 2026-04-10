@@ -68,14 +68,16 @@
   const mobileCSS = document.createElement("style");
   mobileCSS.textContent = `
     @media (max-width: 640px) {
-      #pivotrix-footer > div > div:first-child {
-        flex-direction: column !important;
+      #pivotrix-footer .max-w-7xl > div {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
         text-align: center !important;
       }
       #pivotrix-footer ul {
         align-items: center !important;
       }
-      #pivotrix-footer p {
+      #pivotrix-footer .max-w-320px {
+        max-width: none !important;
         margin: 0 auto !important;
       }
     }

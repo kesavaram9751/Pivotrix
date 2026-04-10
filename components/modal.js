@@ -40,7 +40,7 @@
       </div>
 
       <!-- Content Column -->
-      <div id="modal-content" class="p-8 md:p-12 flex flex-col justify-center">
+      <div id="modal-content" class="p-6 md:p-12 flex flex-col justify-center">
         <!-- Form injected here -->
       </div>
     </div>
@@ -134,7 +134,7 @@
         <h2 class="font-headline text-3xl md:text-3xl font-extrabold text-on-surface tracking-tight leading-[1.15] mb-4">Download Your OKR Strategy Kit</h2>
         <p class="font-body text-on-surface-variant text-sm leading-relaxed">The exact execution worksheets used by 40+ technical teams.</p>
       </div>
-      <form class="space-y-4" onsubmit="window.handlePivotrixSubmit(event, './OKR_Workbook.docx')">
+      <form class="space-y-4" onsubmit="window.handlePivotrixSubmit(event, 'https://pivotrix.com/OKR_template.docx')">
         <div class="space-y-1.5">
           <label class="font-label text-[10px] font-bold text-on-surface-variant uppercase tracking-wider ml-1">Name</label>
           <input type="text" name="name" required class="w-full px-4 py-3 bg-surface-container-low border-0 rounded-lg focus:ring-2 focus:ring-secondary text-sm" placeholder="Jane Cooper">
@@ -160,7 +160,7 @@
         <h2 class="font-headline text-3xl md:text-3xl font-extrabold text-on-surface tracking-tight leading-[1.15] mb-4">Get the OKR Cheat Sheet</h2>
         <p class="font-body text-on-surface-variant text-sm leading-relaxed">The 5-minute blueprint for outcome-based leadership.</p>
       </div>
-      <form class="space-y-4" onsubmit="window.handlePivotrixSubmit(event, './OKR_Cheatsheet.pdf')">
+      <form class="space-y-4" onsubmit="window.handlePivotrixSubmit(event, 'https://pivotrix.com/OKR_Cheatsheet.pdf')">
         <div class="space-y-1.5">
           <label class="font-label text-[10px] font-bold text-on-surface-variant uppercase tracking-wider ml-1">Email</label>
           <input type="email" name="email" required class="w-full px-4 py-3 bg-surface-container-low border-0 rounded-lg focus:ring-2 focus:ring-primary text-sm" placeholder="jane@company.com">
