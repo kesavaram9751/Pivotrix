@@ -13,12 +13,11 @@
  */
 (function () {
   const navLinks = [
-    { label: "OKR Consulting", href: "index.html" },
-    { label: "Digital Marketing", href: "digital_marketing.html" },
-    { label: "Solutions", href: "okr_consulting.html" },
-    { label: "Resources", href: "resources.html" },
-    { label: "Book", href: "book_execution_excellence.html" },
-    { label: "Contact", href: "contact_us.html" },
+    { label: "Growth Marketing", href: "best-digital-marketing-agency.html" },
+    { label: "OKR Growth Consulting", href: "best-okr-coaching-and-consulting.html" },
+    { label: "Resources", href: "okr-exercise-templates.html" },
+    { label: "Book", href: "best-okr-book-execution-excellence-with-okrs.html" },
+    { label: "Contact", href: "contact-us.html" },
   ];
 
   // Determine which page we're on
@@ -123,6 +122,19 @@
   `;
   document.head.appendChild(styleTag);
 
+  // CTA logic based on page
+  const isBookOrResources = currentPage === "best-okr-book-execution-excellence-with-okrs.html" || currentPage === "okr-exercise-templates.html";
+  const amazonUrl = "https://www.amazon.com/Execution-Excellence-OKRs-Blueprint-Managers-ebook/dp/B0GQVPWJ6J/ref=sr_1_3";
+  
+  const rightActionsHTML = isBookOrResources 
+    ? `<a href="${amazonUrl}" target="_blank" style="font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;color:#fff;background:#2563eb;padding:10px 20px;border-radius:8px;text-decoration:none;box-shadow:0 4px 6px -1px rgba(37,99,235,0.1),0 2px 4px -1px rgba(37,99,235,0.06);transition:all 0.25s" onmouseover="this.style.boxShadow='0 10px 15px -3px rgba(37,99,235,0.3)';this.style.transform='translateY(-1px)'" onmouseout="this.style.boxShadow='0 4px 6px -1px rgba(37,99,235,0.1)';this.style.transform='translateY(0)'">Get Your Copy</a>`
+    : `
+      <div style="display:flex;align-items:center;gap:12px">
+        <a href="#" onclick="window.triggerForm1(); return false;" style="font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;color:#2563eb;border:1.5px solid #2563eb;padding:9px 18px;border-radius:8px;text-decoration:none;transition:all 0.2s" onmouseover="this.style.background='rgba(37,99,235,0.05)'" onmouseout="this.style.background='transparent'">Grow my Business</a>
+        <a href="https://calendly.com/pivotrix-info/30min" target="_blank" style="font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;color:#fff;background:#2563eb;padding:10px 20px;border-radius:8px;text-decoration:none;box-shadow:0 4px 6px -1px rgba(37,99,235,0.1),0 2px 4px -1px rgba(37,99,235,0.06);transition:all 0.25s" onmouseover="this.style.boxShadow='0 10px 15px -3px rgba(37,99,235,0.3)';this.style.transform='translateY(-1px)'" onmouseout="this.style.boxShadow='0 4px 6px -1px rgba(37,99,235,0.1)';this.style.transform='translateY(0)'">Schedule a FREE Audit</a>
+      </div>
+    `;
+
   // --- Build the header HTML ---
   const headerHTML = `
   <nav id="pivotrix-header" class="fixed top-0 w-full z-50" style="font-family:'Inter',sans-serif">
@@ -140,8 +152,7 @@
 
       <!-- Right Actions -->
       <div class="flex items-center" style="gap:12px">
-        <a href="#" class="hidden sm:inline-block" style="font-family:'Inter',sans-serif;font-size:0.875rem;font-weight:500;color:#64748b;padding:8px 16px;text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='#1e293b'" onmouseout="this.style.color='#64748b'">Login</a>
-        <a href="contact_us.html" style="font-family:'Inter',sans-serif;font-size:0.875rem;font-weight:600;color:#fff;background:#2563eb;padding:10px 22px;border-radius:8px;text-decoration:none;box-shadow:0 1px 3px rgba(37,99,235,0.25);transition:all 0.2s" onmouseover="this.style.boxShadow='0 4px 14px rgba(37,99,235,0.35)';this.style.transform='translateY(-1px)'" onmouseout="this.style.boxShadow='0 1px 3px rgba(37,99,235,0.25)';this.style.transform='translateY(0)'">Get Started</a>
+        ${rightActionsHTML}
 
         <!-- Mobile Menu Toggle -->
         <button id="mobile-menu-toggle" class="md:hidden" style="padding:8px;color:#64748b;background:none;border:none;cursor:pointer" aria-label="Toggle menu">
@@ -161,8 +172,13 @@
           })
           .join("\n")}
         <div style="border-top:1px solid #e2e8f0;margin:8px 0"></div>
-        <a href="#" class="pivotrix-mobile-link">Login</a>
-        <a href="contact_us.html" style="font-size:0.875rem;font-weight:600;color:#fff;background:#2563eb;text-align:center;padding:10px;border-radius:8px;text-decoration:none;margin-top:6px">Get Started</a>
+        ${isBookOrResources 
+          ? `<a href="${amazonUrl}" target="_blank" class="pivotrix-mobile-link" style="font-family:'Manrope',sans-serif;color:#2563eb;font-weight:700">Get Your Copy</a>`
+          : `
+            <a href="#" onclick="window.triggerForm1(); return false;" class="pivotrix-mobile-link" style="font-family:'Manrope',sans-serif">Grow my Business</a>
+            <a href="https://calendly.com/pivotrix-info/30min" target="_blank" style="font-family:'Manrope',sans-serif;font-size:0.875rem;font-weight:700;color:#fff;background:#2563eb;text-align:center;padding:10px;border-radius:8px;text-decoration:none;margin-top:6px">Schedule a FREE Audit</a>
+          `
+        }
       </div>
     </div>
   </nav>

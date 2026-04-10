@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="en">
+<html class="scroll-smooth antialiased" lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -1530,11 +1530,11 @@
     class="bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary-container"
     data-mode="connect">
     <!-- Header Component -->
-<div id="site-header"></div>
+    <div id="site-header"></div>
     <!-- Hero Section -->
-    <header class="relative pt-20 pb-20 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-7 z-10">
+    <header class="relative pt-8 pb-8 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            <div class="md:col-span-7 z-10">
                 <div
                     class="mb-6 inline-flex items-center px-3 py-1 rounded-full bg-primary-container text-on-primary-container text-xs font-bold tracking-widest uppercase">
                     New Release
@@ -1552,13 +1552,21 @@
                         <span class="material-symbols-outlined">shopping_cart</span>
                         Buy on Amazon
                     </a>
-                    <a class="flex items-center justify-center gap-2 border border-outline px-8 py-4 rounded-DEFAULT text-lg font-bold text-primary hover:bg-primary-container/30 transition-colors"
-                        href="#templates">
-                        Explore Free Templates
-                    </a>
+                    <div class="flex flex-wrap justify-center gap-4 font-headline">
+                        <button onclick="window.triggerForm1()"
+                            class="bg-primary text-white px-10 py-5 rounded-xl font-black text-xl shadow-2xl shadow-primary/20 hover:scale-105 transition-all flex items-center gap-2">
+                            Grow my Business
+                            <span class="material-symbols-outlined text-2xl">trending_up</span>
+                        </button>
+                        <a href="https://calendly.com/pivotrix-info/30min" target="_blank"
+                            class="bg-on-background text-surface px-10 py-5 rounded-xl font-bold text-xl shadow-2xl hover:scale-105 transition-all flex items-center justify-center no-underline gap-2">
+                            Schedule a Free Audit
+                            <span class="material-symbols-outlined text-2xl">calendar_today</span>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div class="lg:col-span-5 flex justify-center lg:justify-end book-perspective">
+            <div class="md:col-span-5 flex justify-center md:justify-end book-perspective">
                 <div class="relative w-72 h-[440px] md:w-80 md:h-[480px] book-3d">
                     <div
                         class="absolute inset-0 bg-on-background rounded-r-lg overflow-hidden border-l-4 border-primary shadow-2xl">
@@ -1672,8 +1680,8 @@
                         Your First OKR Workshop?</h2>
                     <p class="text-xl opacity-80 mb-10">Get the exact Exercise Templates used by Pivotrix consultants to
                         align billion-dollar teams.</p>
-                    <button
-                        class="bg-primary text-on-primary px-10 py-4 rounded-DEFAULT font-black text-lg hover:brightness-110 transition-all flex items-center gap-3">
+                    <button onclick="window.triggerForm2()"
+                        class="bg-primary text-on-primary px-10 py-4 rounded-DEFAULT font-headline font-black text-lg hover:brightness-110 transition-all flex items-center gap-3">
                         <span class="material-symbols-outlined">download</span>
                         OKR Exercise Templates
                     </button>
@@ -1701,11 +1709,12 @@
         <div class="absolute inset-0 bg-primary/5 -z-0"></div>
     </section>
     <!-- Footer Component -->
-<div id="site-footer"></div>
+    <div id="site-footer"></div>
 
-<!-- Reusable Components -->
-<script src="components/header.js"></script>
-<script src="components/footer.js"></script>
+    <!-- Reusable Components -->
+    <script src="components/header.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="components/modal.js"></script>
 </body>
 
 </html>
