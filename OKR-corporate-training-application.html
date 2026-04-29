@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OKR Training Intake — Pivotrix</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+<style>
+/* ─────────────────────────────────────────
+   DESIGN TOKENS — aligned with existing site forms
+───────────────────────────────────────── */
+:root {
+  --bg-page:     #F7F9FB;   /* neutral page background */
+  --bg-white:    #FFFFFF;
+  --bg-tint:     #F2F4F6;   /* light form field / chip background */
+  --bg-navy:     #1A1F35;   /* dark navy — secondary button */
+  --blue:        #2563EB;   /* Pivotrix form primary blue */
+  --blue-hover:  #1D4ED8;
+  --blue-soft:   rgba(37,99,235,0.08);
+  --blue-border: rgba(37,99,235,0.22);
+  --grad:        linear-gradient(135deg, #2563EB 0%, #7B45D9 100%); /* Output-layer gradient */
+  --text-dark:   #191C1E;
+  --text-body:   #5E6673;
+  --text-muted:  #6F7A8A;
+  --border:      #D8DADC;
+  --error:       #BA1A1A;
+  --error-bg:    #FFEBEE;
+  --radius-card: 18px;
+  --radius-sm:   12px;
+  --radius-pill: 100px;
+  --shadow:      0 20px 40px rgba(15,23,42,0.06);
+  --shadow-lg:   0 24px 60px rgba(15,23,42,0.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Manrope', 'Inter', sans-serif;
+  background: var(--bg-page);
+  color: var(--text-dark);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── TOP NAV ──────────────────────────────────────── */
+.topnav {
+  background: var(--bg-white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 8px rgba(59,82,212,0.06);
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--blue);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.nav-tag {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.nav-tag .material-icons-round { font-size: 15px; color: var(--blue); }
+
+/* ── PAGE ─────────────────────────────────────────── */
+.page { max-width: 980px; margin: 0 auto; padding: 52px 28px 88px; }
+
+/* ── HERO ─────────────────────────────────────────── */
+.hero { margin-bottom: 40px; animation: up .5s ease both; }
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-body);
+  margin-bottom: 14px;
+}
+
+.hero h1 {
+  font-size: clamp(24px, 4.5vw, 38px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--text-dark);
+  margin-bottom: 14px;
+}
+
+.hero h1 em { font-style: normal; color: var(--blue); }
+
+.hero p { font-size: 15px; color: var(--text-body); line-height: 1.7; max-width: 520px; }
+
+/* ── PROGRESS BAR ─────────────────────────────────── */
+.prog-wrap {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 36px;
+  animation: up .5s .06s ease both;
+}
+
+.prog-item { display: flex; align-items: flex-start; flex: 1; }
+.prog-item:last-child { flex: none; }
+.prog-node { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+
+.prog-dot {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: var(--bg-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: all .3s;
+}
+
+.prog-dot .chk { display: none; font-size: 16px; }
+
+.prog-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  color: var(--text-muted);
+  white-space: nowrap;
+  text-transform: uppercase;
+  transition: color .3s;
+}
+
+.prog-line {
+  flex: 1;
+  height: 2px;
+  background: var(--border);
+  margin: 15px 4px 0;
+  border-radius: 2px;
+  transition: background .4s;
+}
+
+.prog-item.active .prog-dot  { border-color: var(--blue); background: var(--blue); color: #fff; box-shadow: 0 0 0 5px var(--blue-soft); }
+.prog-item.active .prog-label { color: var(--blue); }
+.prog-item.done   .prog-dot  { border-color: var(--blue); background: var(--blue); color: #fff; }
+.prog-item.done   .prog-dot .num { display: none; }
+.prog-item.done   .prog-dot .chk { display: block; }
+.prog-item.done   .prog-label { color: var(--blue); }
+.prog-item.done + .prog-line  { background: var(--blue); }
+
+/* ── CARD ─────────────────────────────────────────── */
+.card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 32px;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow);
+  animation: up .45s ease both;
+}
+
+.card-hdr {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--bg-tint);
+}
+
+.card-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  background: var(--blue-soft);
+  border: 1px solid var(--blue-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.card-icon .material-icons-round { font-size: 21px; color: var(--blue); }
+.card-sub { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); margin-bottom: 3px; }
+.card-ttl { font-size: 18px; font-weight: 800; letter-spacing: -0.02em; color: var(--text-dark); }
+
+/* Converted step 3 white card styling */
+.card-grad { background: var(--bg-white); border: 1px solid var(--border); box-shadow: var(--shadow); }
+.card-grad .card-hdr  { border-bottom-color: var(--bg-tint); }
+.card-grad .card-sub  { color: var(--blue); }
+.card-grad .card-ttl  { color: var(--text-dark); }
+.card-grad .card-icon { background: var(--blue-soft); border-color: var(--blue-border); }
+.card-grad .card-icon .material-icons-round { color: var(--blue); }
+.card-grad .q-lbl     { color: var(--text-dark); }
+.card-grad .q-hint    { color: var(--text-muted); }
+
+/* ── QUESTIONS ─────────────────────────────────────── */
+.q { margin-bottom: 24px; }
+.q:last-child { margin-bottom: 0; }
+.q-lbl { font-size: 13px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; display: flex; align-items: center; gap: 5px; }
+.req   { color: var(--blue); font-size: 15px; line-height: 1; }
+.q-hint { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; font-weight: 500; }
+
+/* ── CHIPS ─────────────────────────────────────────── */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--border);
+  background: var(--bg-tint);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-body);
+  cursor: pointer;
+  user-select: none;
+  transition: all .18s;
+}
+
+.chip:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-soft); }
+.chip.sel   { border-color: var(--blue); background: var(--blue); color: #fff; }
+
+/* White-variant chips for step 3 fields on a white card */
+.chip-w { background: var(--bg-tint); border-color: var(--border); color: var(--text-dark); }
+.chip-w:hover { background: #E8EBF8; border-color: var(--blue); color: var(--blue); }
+.chip-w.sel   { background: var(--blue); border-color: var(--blue); color: #fff; }
+
+/* ── RADIO CARDS ───────────────────────────────────── */
+.rcards { display: grid; grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); gap: 10px; }
+
+.rcard {
+  padding: 18px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  background: var(--bg-tint);
+  cursor: pointer;
+  user-select: none;
+  transition: all .2s;
+}
+
+.rcard:hover { border-color: var(--blue); background: var(--blue-soft); }
+.rcard.sel   { border-color: var(--blue); background: var(--blue-soft); box-shadow: 0 0 0 3px var(--blue-soft); }
+
+.rcard .material-icons-round { font-size: 22px; color: var(--text-muted); margin-bottom: 10px; display: block; transition: color .2s; }
+.rcard:hover .material-icons-round, .rcard.sel .material-icons-round { color: var(--blue); }
+
+.r-lbl  { font-size: 13px; font-weight: 700; color: var(--text-dark); margin-bottom: 3px; }
+.r-desc { font-size: 11px; color: var(--text-muted); line-height: 1.45; }
+.rcard.sel .r-lbl { color: var(--blue); }
+
+/* White-variant radio cards for step 3 section on a white card */
+.rcard-w { background: var(--bg-white); border-color: var(--border); color: var(--text-dark); }
+.rcard-w:hover { background: var(--bg-tint); border-color: var(--blue); }
+.rcard-w.sel   { background: var(--blue); border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,.08); }
+.rcard-w .material-icons-round { color: var(--blue); }
+.rcard-w:hover .material-icons-round, .rcard-w.sel .material-icons-round { color: #fff; }
+.rcard-w .r-lbl  { color: var(--text-dark); }
+.rcard-w .r-desc { color: var(--text-muted); }
+.rcard-w.sel .r-lbl { color: #fff; }
+.rcard-w.sel .r-desc { color: rgba(255,255,255,.8); }
+
+/* ── TEXT INPUTS ───────────────────────────────────── */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  padding: 14px 0 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-dark);
+  outline: none;
+  resize: vertical;
+  transition: border-color .2s, background .2s;
+}
+
+input:focus, textarea:focus {
+  border-bottom-color: var(--blue);
+  background: transparent;
+}
+
+input::placeholder, textarea::placeholder { color: var(--text-muted); font-weight: 400; }
+input.error, textarea.error { border-bottom-color: var(--error); background: transparent; }
+
+/* ── TAG INPUT ─────────────────────────────────────── */
+.tag-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  align-items: center;
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid var(--border);
+  border-radius: 0;
+  padding: 8px 0 6px;
+  min-height: 52px;
+  cursor: text;
+  transition: border-color .2s, background .2s;
+}
+
+.tag-wrap:focus-within { border-bottom-color: var(--blue); background: transparent; }
+
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--blue);
+  color: #fff;
+  border-radius: var(--radius-pill);
+  padding: 4px 10px 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tag-rm { cursor: pointer; opacity: .7; font-size: 13px; line-height: 1; }
+.tag-rm:hover { opacity: 1; }
+
+.tag-inp {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-dark);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  min-width: 120px;
+  flex: 1;
+}
+
+.tag-inp::placeholder { color: var(--text-muted); }
+
+/* ── URGENCY SCALE ─────────────────────────────────── */
+.scale-row { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.s-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  background: var(--bg-tint);
+  color: var(--text-body);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all .18s;
+}
+
+.s-btn:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-soft); }
+.s-btn.sel   { border-color: var(--blue); background: var(--blue); color: #fff; box-shadow: 0 2px 8px rgba(59,82,212,.25); }
+
+.scale-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 7px;
+}
+
+/* ── LAYOUT HELPERS ────────────────────────────────── */
+.two-col  { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.divider  { border: none; border-top: 1px solid var(--bg-tint); margin: 24px 0; }
+.cond     { display: none; margin-top: 12px; animation: up .3s ease; }
+.cond.show { display: block; }
+.char-count { font-size: 11px; font-weight: 600; color: var(--text-muted); text-align: right; margin-top: 5px; }
+
+/* ── VALIDATION MESSAGES ───────────────────────────── */
+.v-msg { font-size: 12px; color: var(--error); font-weight: 600; margin-top: 5px; display: none; }
+.v-msg.show { display: block; }
+
+/* ── INFO NOTE ─────────────────────────────────────── */
+.info-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--blue-soft);
+  border: 1px solid var(--blue-border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  font-size: 13px;
+  color: var(--text-body);
+  line-height: 1.6;
+  margin-top: 22px;
+}
+
+.info-note .material-icons-round { font-size: 18px; color: var(--blue); flex-shrink: 0; margin-top: 1px; }
+.info-note strong { color: var(--blue); }
+
+/* ── NAVIGATION ROW ────────────────────────────────── */
+.nav-row  { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; gap: 12px; }
+.step-meta { font-size: 12px; color: var(--text-muted); font-weight: 600; }
+
+/* ── BUTTONS ───────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 13px 26px;
+  border-radius: 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .2s;
+  border: none;
+  letter-spacing: -0.01em;
+}
+
+.btn .material-icons-round { font-size: 17px; }
+
+/* Back — matches "Schedule a Free Audit" border style */
+.btn-back { background: transparent; border: 1.5px solid var(--border); color: var(--text-body); }
+.btn-back:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-soft); }
+
+/* Primary — matches existing site blue CTA */
+.btn-primary { background: var(--blue); color: #fff; box-shadow: 0 10px 24px rgba(37,99,235,0.18); border-radius: 14px; }
+.btn-primary:hover { background: var(--blue-hover); box-shadow: 0 14px 30px rgba(37,99,235,0.2); transform: translateY(-1px); }
+
+/* Submit — slightly larger */
+.btn-submit { font-size: 15px; padding: 15px 34px; }
+
+/* ── STEPS ─────────────────────────────────────────── */
+.step { display: none; }
+.step.active { display: block; }
+.step.active .card:nth-child(1) { animation-delay: .04s; }
+.step.active .card:nth-child(2) { animation-delay: .10s; }
+.step.active .card:nth-child(3) { animation-delay: .16s; }
+
+/* ── SUCCESS SCREEN ────────────────────────────────── */
+.success-wrap { text-align: center; padding: 60px 24px; animation: up .5s ease both; }
+
+.s-check {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--blue-soft);
+  border: 2px solid var(--blue-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+}
+
+.s-check .material-icons-round { font-size: 36px; color: var(--blue); }
+.success-wrap h2 { font-size: 30px; font-weight: 800; letter-spacing: -0.03em; color: var(--text-dark); margin-bottom: 12px; }
+.success-wrap p { font-size: 15px; color: var(--text-body); line-height: 1.7; max-width: 420px; margin: 0 auto 8px; }
+
+.s-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--blue);
+  border-radius: var(--radius-pill);
+  padding: 11px 22px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  margin-top: 28px;
+  box-shadow: 0 4px 14px rgba(59,82,212,.3);
+}
+
+.s-badge .material-icons-round { font-size: 17px; }
+
+/* ── FOOTER ────────────────────────────────────────── */
+.page-footer { text-align: center; padding: 32px 0 8px; font-size: 12px; color: var(--text-muted); font-weight: 500; }
+.page-footer a { color: var(--blue); text-decoration: none; }
+
+/* ── ANIMATIONS ────────────────────────────────────── */
+@keyframes up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── RESPONSIVE ────────────────────────────────────── */
+@media (max-width: 560px) {
+  .page     { padding: 28px 14px 60px; }
+  .card     { padding: 22px 18px; }
+  .two-col  { grid-template-columns: 1fr; }
+  .rcards   { grid-template-columns: 1fr 1fr; }
+  .topnav   { padding: 0 16px; }
+  .hero h1  { font-size: 24px; }
+  .scale-row { gap: 5px; }
+  .s-btn    { width: 40px; height: 40px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── TOP NAV ───────────────────────────────────────── -->
+<nav class="topnav">
+  <a class="logo" href="https://pivotrix.com" target="_blank">Pivotrix</a>
+  <div class="nav-tag">
+    <span class="material-icons-round">lock</span>
+    Secure &amp; Confidential
+  </div>
+</nav>
+
+<div class="page">
+  <form id="okr-form" onsubmit="event.preventDefault()">
+
+  <!-- ── HERO ─────────────────────────────────────────── -->
+  <div class="hero">
+    <div class="eyebrow">OKR Training — Requirement Gathering</div>
+    <h1>Let's design training that <em>delivers real results for your team.</em></h1>
+    <p>Takes 5–7 minutes. Your answers help us customise every session to your business context, team challenges, and growth goals — no generic content, ever.</p>
+  </div>
+
+  <!-- ── PROGRESS BAR ──────────────────────────────────── -->
+  <div class="prog-wrap" id="prog">
+    <div class="prog-item active" data-step="1">
+      <div class="prog-node">
+        <div class="prog-dot"><span class="num">1</span><span class="material-icons-round chk">check</span></div>
+        <div class="prog-label">About You</div>
+      </div>
+    </div>
+    <div class="prog-line"></div>
+    <div class="prog-item" data-step="2">
+      <div class="prog-node">
+        <div class="prog-dot"><span class="num">2</span><span class="material-icons-round chk">check</span></div>
+        <div class="prog-label">Context</div>
+      </div>
+    </div>
+    <div class="prog-line"></div>
+    <div class="prog-item" data-step="3">
+      <div class="prog-node">
+        <div class="prog-dot"><span class="num">3</span><span class="material-icons-round chk">check</span></div>
+        <div class="prog-label">Your Team</div>
+      </div>
+    </div>
+    <div class="prog-line"></div>
+    <div class="prog-item" data-step="4">
+      <div class="prog-node">
+        <div class="prog-dot"><span class="num">4</span><span class="material-icons-round chk">check</span></div>
+        <div class="prog-label">Training</div>
+      </div>
+    </div>
+    <div class="prog-line"></div>
+    <div class="prog-item" data-step="5">
+      <div class="prog-node">
+        <div class="prog-dot"><span class="num">5</span><span class="material-icons-round chk">check</span></div>
+        <div class="prog-label">Success</div>
+      </div>
+    </div>
+  </div>
+
+  <input type="hidden" name="company_size" id="h-company-size">
+  <input type="hidden" name="why_training" id="h-why-training">
+  <input type="hidden" name="pain_points" id="h-pain-points">
+  <input type="hidden" name="goal_setting_system" id="h-gsys">
+  <input type="hidden" name="leadership_attendance" id="h-leadership">
+  <input type="hidden" name="staff_levels" id="h-staff-levels">
+  <input type="hidden" name="okr_experience" id="h-okr-experience">
+  <input type="hidden" name="training_goal" id="h-training-goal">
+  <input type="hidden" name="team_understanding" id="h-team-understanding">
+  <input type="hidden" name="previous_failures" id="h-previous-failures">
+  <input type="hidden" name="use_real_examples" id="h-real-examples">
+  <input type="hidden" name="preferred_mode" id="h-preferred-mode">
+  <input type="hidden" name="preferred_duration" id="h-preferred-duration">
+  <input type="hidden" name="training_format_preferences" id="h-training-format">
+  <input type="hidden" name="post_training_support" id="h-post-support">
+  <input type="hidden" name="budget_range" id="h-budget-range">
+  <input type="hidden" name="selected_departments" id="h-selected-departments">
+  <input type="hidden" name="urgency_level" id="h-urgency-level">
+
+  <!-- ════════════════════════════════════════
+       STEP 1 — About You
+  ════════════════════════════════════════════ -->
+  <div class="step active" id="step-1">
+    <div class="card">
+      <div class="card-hdr">
+        <div class="card-icon"><span class="material-icons-round">person</span></div>
+        <div>
+          <div class="card-sub">Step 1 of 5</div>
+          <div class="card-ttl">Tell us about yourself</div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="q">
+          <div class="q-lbl">Full Name <span class="req">*</span></div>
+          <input type="text" id="f-name" name="name" placeholder="e.g. Rajesh Kumar" />
+          <div class="v-msg" id="e-name">Please enter your full name.</div>
+        </div>
+        <div class="q">
+          <div class="q-lbl">Designation / Role <span class="req">*</span></div>
+          <input type="text" id="f-role" name="role" placeholder="e.g. CEO, HR Head, COO" />
+          <div class="v-msg" id="e-role">Please enter your designation.</div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="q">
+          <div class="q-lbl">Company Name <span class="req">*</span></div>
+          <input type="text" id="f-company" name="company" placeholder="e.g. Acme Industries Pvt. Ltd." />
+          <div class="v-msg" id="e-company">Please enter your company name.</div>
+        </div>
+        <div class="q">
+          <div class="q-lbl">Industry / Sector</div>
+          <input type="text" id="f-industry" name="industry" placeholder="e.g. Manufacturing, SaaS, Retail" />
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="q">
+          <div class="q-lbl">Work Email <span class="req">*</span></div>
+          <input type="email" id="f-email" name="email" placeholder="you@company.com" />
+          <div class="v-msg" id="e-email">Please enter a valid email address.</div>
+        </div>
+        <div class="q">
+          <div class="q-lbl">WhatsApp / Phone</div>
+          <input type="tel" id="f-phone" name="phone" placeholder="+91 98XXX XXXXX" />
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-lbl">Company Size</div>
+        <div class="chips">
+          <div class="chip" data-g="size">1–25 employees</div>
+          <div class="chip" data-g="size">26–100 employees</div>
+          <div class="chip" data-g="size">101–500 employees</div>
+          <div class="chip" data-g="size">500+ employees</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <span class="step-meta">5 sections &nbsp;·&nbsp; ~5 minutes</span>
+      <button class="btn btn-primary" onclick="step1Next()">
+        Continue <span class="material-icons-round">arrow_forward</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       STEP 2 — Why OKRs / What's Broken
+  ════════════════════════════════════════════ -->
+  <div class="step" id="step-2">
+    <div class="card">
+      <div class="card-hdr">
+        <div class="card-icon"><span class="material-icons-round">flag</span></div>
+        <div>
+          <div class="card-sub">Step 2 of 5</div>
+          <div class="card-ttl">Why OKRs — and what's not working today?</div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-lbl">Why do you want OKR training right now? <span class="req">*</span></div>
+        <div class="q-hint">Select all that apply</div>
+        <div class="chips">
+          <div class="chip" data-g="why" data-m="1">New financial year — need a reset</div>
+          <div class="chip" data-g="why" data-m="1">Leadership mandate to implement OKRs</div>
+          <div class="chip" data-g="why" data-m="1">Tried OKRs before — it didn't stick</div>
+          <div class="chip" data-g="why" data-m="1">Scaling fast and need better alignment</div>
+          <div class="chip" data-g="why" data-m="1">Investor or board requirement</div>
+          <div class="chip" data-g="why" data-m="1">Just discovered OKRs and want to learn</div>
+          <div class="chip" data-g="why" data-m="1">Other reason</div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-lbl">What problems are you facing today? <span class="req">*</span></div>
+        <div class="q-hint">Pick your top pain points — the more specific you are, the better we design</div>
+        <div class="chips">
+          <div class="chip" data-g="pain" data-m="1">No clarity on business priorities</div>
+          <div class="chip" data-g="pain" data-m="1">Departments working in silos</div>
+          <div class="chip" data-g="pain" data-m="1">Poor execution and follow-through</div>
+          <div class="chip" data-g="pain" data-m="1">Lack of accountability culture</div>
+          <div class="chip" data-g="pain" data-m="1">Goals are set but never tracked</div>
+          <div class="chip" data-g="pain" data-m="1">Communication gaps between teams</div>
+          <div class="chip" data-g="pain" data-m="1">Revenue targets missed repeatedly</div>
+          <div class="chip" data-g="pain" data-m="1">Low employee engagement and ownership</div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-lbl">What is your single most important goal for this training? <span class="req">*</span></div>
+        <div class="q-hint">One outcome — the result that would make this training a clear success for you</div>
+        <textarea id="f-topgoal" name="top_goal" rows="3" placeholder="e.g. I want every department head to write and independently own their OKRs within 30 days of completing the training..."></textarea>
+        <div class="v-msg" id="e-topgoal">Please describe your primary goal for this training.</div>
+      </div>
+
+      <div class="q">
+        <div class="q-lbl">Do you currently use a goal-setting system?</div>
+        <div class="chips">
+          <div class="chip" data-g="gsys" data-val="none">No system — we run on instinct</div>
+          <div class="chip" data-g="gsys" data-val="has">Spreadsheets / Excel</div>
+          <div class="chip" data-g="gsys" data-val="has">KPIs or Balanced Scorecard</div>
+          <div class="chip" data-g="gsys" data-val="has">An OKR tool (e.g. Profit.co, Lattice, Betterworks)</div>
+          <div class="chip" data-g="gsys" data-val="has">Something else</div>
+        </div>
+        <div class="cond" id="cond-gsys">
+          <input type="text" id="f-gsys-detail" name="gsys_detail" placeholder="Name the system and describe the biggest problem with it..." />
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn btn-back" onclick="goTo(1)">
+        <span class="material-icons-round">arrow_back</span> Back
+      </button>
+      <button class="btn btn-primary" onclick="step2Next()">
+        Continue <span class="material-icons-round">arrow_forward</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       STEP 3 — Participants & OKR Experience
+  ════════════════════════════════════════════ -->
+  <div class="step" id="step-3">
+    <div class="card">
+      <div class="card-hdr">
+        <div class="card-icon"><span class="material-icons-round">groups</span></div>
+        <div>
+          <div class="card-sub">Step 3 of 5</div>
+          <div class="card-ttl">Who will attend this training?</div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-lbl">Which departments or teams will participate? <span class="req">*</span></div>
+        <div class="q-hint">Type a department name and press Enter to add it</div>
+        <div class="tag-wrap" id="dept-wrap" onclick="document.getElementById('dept-inp').focus()">
+          <input type="text" class="tag-inp" id="dept-inp"
+            placeholder="e.g. Sales, Engineering, Finance, HR…"
+            onkeydown="addTag(event,'dept-wrap','dept-inp')" />
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="q">
+          <div class="q-lbl">Total number of participants <span class="req">*</span></div>
+          <input type="number" id="f-pax" name="participants" placeholder="e.g. 30" min="1" max="999" />
+          <div class="v-msg" id="e-pax">Please enter the expected number of participants.</div>
+        </div>
+        <div class="q">
+          <div class="q-lbl">Will leadership attend?</div>
+          <div class="chips" style="flex-direction:column;gap:8px">
+            <div class="chip" data-g="lead">Yes — leadership will attend all sessions</div>
+            <div class="chip" data-g="lead">Opening and key sessions only</div>
+            <div class="chip" data-g="lead">No — leadership will not attend</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-lbl">Which levels of staff will attend? (select all that apply)</div>
+        <div class="chips">
+          <div class="chip" data-g="who" data-m="1">C-Suite / Founders</div>
+          <div class="chip" data-g="who" data-m="1">Senior Leadership (VP / Director)</div>
+          <div class="chip" data-g="who" data-m="1">Middle Managers</div>
+          <div class="chip" data-g="who" data-m="1">Team Leads</div>
+          <div class="chip" data-g="who" data-m="1">Individual Contributors</div>
+          <div class="chip" data-g="who" data-m="1">HR / Learning &amp; Development Team</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OKR Awareness — Gradient accent card matching the site's Output Layer -->
+    <div class="card card-grad">
+      <div class="card-hdr">
+        <div class="card-icon"><span class="material-icons-round">school</span></div>
+        <div>
+          <div class="card-sub">OKR Awareness</div>
+          <div class="card-ttl">Where does your team stand with OKRs?</div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-lbl">Overall OKR experience level across the team</div>
+        <div class="rcards">
+          <div class="rcard rcard-w" data-g="okrexp">
+            <span class="material-icons-round">eco</span>
+            <div class="r-lbl">Zero exposure</div>
+            <div class="r-desc">Completely new to OKRs</div>
+          </div>
+          <div class="rcard rcard-w" data-g="okrexp">
+            <span class="material-icons-round">menu_book</span>
+            <div class="r-lbl">Heard of it</div>
+            <div class="r-desc">Know the term, not the method</div>
+          </div>
+          <div class="rcard rcard-w" data-g="okrexp">
+            <span class="material-icons-round">build</span>
+            <div class="r-lbl">Tried once</div>
+            <div class="r-desc">Started but did not sustain it</div>
+          </div>
+          <div class="rcard rcard-w" data-g="okrexp">
+            <span class="material-icons-round">directions_run</span>
+            <div class="r-lbl">Currently active</div>
+            <div class="r-desc">Running OKRs but need improvement</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q" style="margin-top:20px">
+        <div class="q-lbl">Do your teams understand OKRs?</div>
+        <div class="chips">
+          <div class="chip chip-w" data-g="und">No — most people have never heard of OKRs</div>
+          <div class="chip chip-w" data-g="und">Some awareness but very limited</div>
+          <div class="chip chip-w" data-g="und">A few champions, but not the whole team</div>
+          <div class="chip chip-w" data-g="und">Most people have a working understanding</div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-lbl">If you have tried OKRs before, what went wrong?</div>
+        <div class="q-hint">Select all that apply — this helps us anticipate and avoid the same traps</div>
+        <div class="chips">
+          <div class="chip chip-w" data-g="fail" data-m="1">OKRs were written too vaguely</div>
+          <div class="chip chip-w" data-g="fail" data-m="1">No regular check-ins or reviews</div>
+          <div class="chip chip-w" data-g="fail" data-m="1">Leaders did not lead by example</div>
+          <div class="chip chip-w" data-g="fail" data-m="1">Treated like KPIs with scoring pressure</div>
+          <div class="chip chip-w" data-g="fail" data-m="1">Too many OKRs were set at once</div>
+          <div class="chip chip-w" data-g="fail" data-m="1">No software or tracking system in place</div>
+          <div class="chip chip-w" data-g="fail" data-m="1">Low buy-in from the team</div>
+          <div class="chip chip-w" data-g="fail" data-m="1">Not applicable — this is our first attempt</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn btn-back" onclick="goTo(2)">
+        <span class="material-icons-round">arrow_back</span> Back
+      </button>
+      <button class="btn btn-primary" onclick="step3Next()">
+        Continue <span class="material-icons-round">arrow_forward</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       STEP 4 — Training Design & Logistics
+  ════════════════════════════════════════════ -->
+  <div class="step" id="step-4">
+    <div class="card">
+      <div class="card-hdr">
+        <div class="card-icon"><span class="material-icons-round">design_services</span></div>
+        <div>
+          <div class="card-sub">Step 4 of 5</div>
+          <div class="card-ttl">Design your training programme</div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-lbl">What do you want participants to walk away with? <span class="req">*</span></div>
+        <div class="rcards">
+          <div class="rcard" data-g="tgoal">
+            <span class="material-icons-round">lightbulb</span>
+            <div class="r-lbl">Awareness</div>
+            <div class="r-desc">Understand what OKRs are and why they work</div>
+          </div>
+          <div class="rcard" data-g="tgoal">
+            <span class="material-icons-round">edit_note</span>
+            <div class="r-lbl">Draft OKRs</div>
+            <div class="r-desc">Write our first real OKRs during the session</div>
+          </div>
+          <div class="rcard" data-g="tgoal">
+            <span class="material-icons-round">tune</span>
+            <div class="r-lbl">Improve OKRs</div>
+            <div class="r-desc">Fix and strengthen our existing OKRs</div>
+          </div>
+          <div class="rcard" data-g="tgoal">
+            <span class="material-icons-round">rocket_launch</span>
+            <div class="r-lbl">Full Rollout</div>
+            <div class="r-desc">Launch a complete, company-wide OKR system</div>
+          </div>
+        </div>
+        <div class="v-msg" id="e-tgoal">Please select what you want participants to walk away with.</div>
+      </div>
+
+      <div class="q">
+        <div class="q-lbl">Can we use your real business examples during the training?</div>
+        <div class="chips">
+          <div class="chip" data-g="examples">Yes — please use our actual goals and numbers</div>
+          <div class="chip" data-g="examples">Yes, but keep sensitive data confidential</div>
+          <div class="chip" data-g="examples">No — please use generic examples only</div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="q">
+          <div class="q-lbl">Preferred training mode <span class="req">*</span></div>
+          <div class="chips" style="flex-direction:column;gap:8px">
+            <div class="chip" data-g="mode" data-type="online">Online (Zoom / Google Meet)</div>
+            <div class="chip" data-g="mode" data-type="offline">In-person at our office</div>
+            <div class="chip" data-g="mode" data-type="offline">Hybrid (online + in-person)</div>
+            <div class="chip" data-g="mode" data-type="offline">At the Pivotrix training venue</div>
+          </div>
+          <div class="cond" id="cond-mode-offline">
+            <input type="text" id="f-mode-offline" name="mode_offline" placeholder="City and preferred location or address..." />
+          </div>
+          <div class="cond" id="cond-mode-online">
+            <input type="text" id="f-mode-online" name="mode_online" placeholder="Preferred platform (Zoom, Teams, Google Meet)..." />
+          </div>
+          <div class="v-msg" id="e-mode">Please select a preferred training mode.</div>
+        </div>
+        <div class="q">
+          <div class="q-lbl">Preferred duration</div>
+          <div class="chips" style="flex-direction:column;gap:8px">
+            <div class="chip" data-g="dur">Half day — 4 hours</div>
+            <div class="chip" data-g="dur">Full day — 8 hours</div>
+            <div class="chip" data-g="dur">2 full days</div>
+            <div class="chip" data-g="dur">Multiple sessions over several weeks</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-lbl">Preferred dates or timeline</div>
+        <input type="text" id="f-dates" name="preferred_dates" placeholder="e.g. Last week of June 2025, or anytime in Q3 2025" />
+      </div>
+
+      <div class="q">
+        <div class="q-lbl">Training format preferences (select all that apply)</div>
+        <div class="chips">
+          <div class="chip" data-g="fmt" data-m="1">Hands-on exercises using our real goals</div>
+          <div class="chip" data-g="fmt" data-m="1">Department-wise breakout sessions</div>
+          <div class="chip" data-g="fmt" data-m="1">Role plays and scenario simulations</div>
+          <div class="chip" data-g="fmt" data-m="1">OKR templates and toolkits to take away</div>
+          <div class="chip" data-g="fmt" data-m="1">Leadership keynote or kickoff session</div>
+          <div class="chip" data-g="fmt" data-m="1">30-day post-training follow-up call</div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-lbl">Do you need post-training support?</div>
+        <div class="chips">
+          <div class="chip" data-g="post" data-m="1">Monthly OKR review facilitation</div>
+          <div class="chip" data-g="post" data-m="1">One-on-one OKR coaching for leaders</div>
+          <div class="chip" data-g="post" data-m="1">OKR software setup and onboarding</div>
+          <div class="chip" data-g="post" data-m="1">90-day progress audit and recalibration</div>
+          <div class="chip" data-g="post" data-m="1">No post-training support needed</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn btn-back" onclick="goTo(3)">
+        <span class="material-icons-round">arrow_back</span> Back
+      </button>
+      <button class="btn btn-primary" onclick="step4Next()">
+        Continue <span class="material-icons-round">arrow_forward</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       STEP 5 — Success Metrics & Final Details
+  ════════════════════════════════════════════ -->
+  <div class="step" id="step-5">
+    <div class="card">
+      <div class="card-hdr">
+        <div class="card-icon"><span class="material-icons-round">verified</span></div>
+        <div>
+          <div class="card-sub">Step 5 of 5 — Final details</div>
+          <div class="card-ttl">Define success and set clear boundaries</div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-lbl">How will you measure the success of this training? <span class="req">*</span></div>
+        <div class="q-hint">What should visibly improve within 90 days of completing the training?</div>
+        <textarea id="f-success" name="success_measurement" rows="3" placeholder="e.g. Every team will have live, reviewed OKRs. We will run weekly 30-minute check-ins. Q3 targets will be 80% on track by Day 60..."></textarea>
+        <div class="v-msg" id="e-success">Please describe how you will measure the success of this training.</div>
+      </div>
+
+      <div class="q">
+        <div class="q-lbl">What should NOT happen in this training?</div>
+        <div class="q-hint">Helps us avoid cultural sensitivities, bad past experiences, or misaligned approaches</div>
+        <textarea id="f-avoid" name="avoid" rows="2" placeholder="e.g. Do not make it feel like a performance appraisal. Do not skip the operations team. Avoid excessive theory and jargon..."></textarea>
+      </div>
+
+      <div class="q">
+        <div class="q-lbl">Have any similar training programmes or change initiatives failed before?</div>
+        <div class="q-hint">Honest answers help us design a programme that avoids the same pitfalls</div>
+        <textarea id="f-pastfail" name="past_failures" rows="2" placeholder="e.g. We ran a Balanced Scorecard programme in 2022. Leadership lost interest after the first month and the initiative collapsed..."></textarea>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="q">
+        <div class="q-lbl">How urgent is this training for you? <span class="req">*</span></div>
+        <div class="q-hint">1 = Not urgent, still exploring &nbsp;|&nbsp; 5 = Needed this quarter &nbsp;|&nbsp; 10 = Need to start immediately</div>
+        <div class="scale-row" id="urg-scale">
+          <button class="s-btn" onclick="setScale('urg-scale',this)">1</button>
+          <button class="s-btn" onclick="setScale('urg-scale',this)">2</button>
+          <button class="s-btn" onclick="setScale('urg-scale',this)">3</button>
+          <button class="s-btn" onclick="setScale('urg-scale',this)">4</button>
+          <button class="s-btn" onclick="setScale('urg-scale',this)">5</button>
+          <button class="s-btn" onclick="setScale('urg-scale',this)">6</button>
+          <button class="s-btn" onclick="setScale('urg-scale',this)">7</button>
+          <button class="s-btn" onclick="setScale('urg-scale',this)">8</button>
+          <button class="s-btn" onclick="setScale('urg-scale',this)">9</button>
+          <button class="s-btn" onclick="setScale('urg-scale',this)">10</button>
+        </div>
+        <div class="scale-labels"><span>Not urgent</span><span>Need it immediately</span></div>
+        <div class="v-msg" id="e-urg">Please select an urgency level before submitting.</div>
+      </div>
+
+      <div class="q">
+        <div class="q-lbl">Budget range you have in mind:</div>
+        <div class="chips">
+          <div class="chip" data-g="budget">Under ₹1 Lakh</div>
+          <div class="chip" data-g="budget">₹1 – ₹3 Lakhs</div>
+          <div class="chip" data-g="budget">₹3 – ₹7 Lakhs</div>
+          <div class="chip" data-g="budget">Above ₹7 Lakhs</div>
+          <div class="chip" data-g="budget">Open — send me a proposal</div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="q-lbl">Anything else you would like us to know?</div>
+        <div class="q-hint">Special requirements, concerns, questions for Pivotrix, or context about your team culture</div>
+        <textarea id="f-notes" name="notes" rows="3" maxlength="500" placeholder="e.g. Our team is culturally averse to scoring. We have a mix of Tamil and English speakers. We'd like Sasi to personally facilitate..."></textarea>
+        <div class="char-count" id="notes-count">0 / 500</div>
+      </div>
+
+      <div class="info-note">
+        <span class="material-icons-round">schedule</span>
+        <span>Sasi from Pivotrix will personally review your submission and send a customised OKR training proposal within <strong>24 hours</strong>. No templates — built entirely around your answers.</span>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn btn-back" onclick="goTo(4)">
+        <span class="material-icons-round">arrow_back</span> Back
+      </button>
+      <button type="button" class="btn btn-primary btn-submit" onclick="step5Submit()">
+        <span class="material-icons-round">send</span> Submit My Requirements
+      </button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       SUCCESS SCREEN
+  ════════════════════════════════════════════ -->
+  <div class="step" id="step-success">
+    <div class="card">
+      <div class="success-wrap">
+        <div class="s-check"><span class="material-icons-round">check_circle</span></div>
+        <h2>Requirements Received.</h2>
+        <p>Thank you for taking the time to fill this in. Sasi will personally review every answer and send a tailored OKR training proposal to:</p>
+        <p><strong id="confirm-email" style="color:var(--text-dark)"></strong></p>
+        <p style="margin-top:14px;font-size:13px;color:var(--text-muted)">
+          Expected response time: <strong style="color:var(--blue)">within 24 hours.</strong><br/>
+          If it's urgent, WhatsApp directly at <strong style="color:var(--text-dark)">+91 98XXX XXXXX</strong>
+        </p>
+        <div class="s-badge">
+          <span class="material-icons-round">trending_up</span>
+          Execution is our identity.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    &copy; 2026 <a href="https://pivotrix.com" target="_blank">Pivotrix</a> &nbsp;·&nbsp; Outcome-Based OKR Consulting
+  </div>
+  </form>
+</div><!-- /page -->
+
+<script>
+/* ── STATE ─────────────────────────────────────────── */
+let cur = 1;
+let urgSelected = false;
+
+/* ── NAVIGATION ────────────────────────────────────── */
+function goTo(n) {
+  document.getElementById('step-' + cur).classList.remove('active');
+  if (n === 'success') {
+    document.getElementById('step-success').classList.add('active');
+    document.getElementById('confirm-email').textContent =
+      document.getElementById('f-email').value || 'your email address';
+  } else {
+    document.getElementById('step-' + n).classList.add('active');
+  }
+  updateProg(n);
+  cur = n;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function updateProg(n) {
+  document.querySelectorAll('.prog-item').forEach(item => {
+    const s = parseInt(item.dataset.step);
+    item.classList.remove('active', 'done');
+    if (typeof n === 'number') {
+      if (s < n) item.classList.add('done');
+      else if (s === n) item.classList.add('active');
+    }
+  });
+}
+
+/* ── VALIDATION HELPERS ────────────────────────────── */
+function check(fieldId, errId, testFn) {
+  const el  = document.getElementById(fieldId);
+  const err = document.getElementById(errId);
+  const ok  = testFn(el.value.trim());
+  el.classList.toggle('error', !ok);
+  err.classList.toggle('show', !ok);
+  return ok;
+}
+
+function isEmail(v)   { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+function notEmpty(v)  { return v.length > 0; }
+function isPositive(v){ return parseInt(v) > 0; }
+
+/* ── STEP VALIDATORS ───────────────────────────────── */
+function step1Next() {
+  const ok = [
+    check('f-name',    'e-name',    notEmpty),
+    check('f-role',    'e-role',    notEmpty),
+    check('f-company', 'e-company', notEmpty),
+    check('f-email',   'e-email',   isEmail),
+  ].every(Boolean);
+  if (ok) goTo(2); else window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function step2Next() {
+  if (check('f-topgoal', 'e-topgoal', notEmpty)) goTo(3);
+}
+
+function step3Next() {
+  if (check('f-pax', 'e-pax', isPositive)) goTo(4);
+}
+
+function step4Next() {
+  /* Require training goal (rcard) and mode (chip) */
+  const goalSel = document.querySelector('.rcard[data-g="tgoal"].sel');
+  const modeSel = document.querySelector('.chip[data-g="mode"].sel');
+  const goalErr = document.getElementById('e-tgoal');
+  const modeErr = document.getElementById('e-mode');
+  goalErr.classList.toggle('show', !goalSel);
+  modeErr.classList.toggle('show', !modeSel);
+  if (goalSel && modeSel) goTo(5); else window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+async function step5Submit() {
+  const a = check('f-success', 'e-success', notEmpty);
+  document.getElementById('e-urg').classList.toggle('show', !urgSelected);
+  if (a && urgSelected) {
+    await submitForm();
+  } else window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function getChipSelections(group, delimiter = ', ') {
+  return [...document.querySelectorAll(`.chip[data-g="${group}"].sel`)].map(chip => chip.textContent.trim()).join(delimiter);
+}
+
+function getRadioSelection(group) {
+  const card = document.querySelector(`.rcard[data-g="${group}"].sel`);
+  return card ? card.querySelector('.r-lbl').textContent.trim() : '';
+}
+
+function getTagValues(wrapId) {
+  const pills = [...document.querySelectorAll(`#${wrapId} .tag-pill`)];
+  return pills.map(pill => pill.textContent.replace('×', '').trim()).filter(Boolean).join(', ');
+}
+
+function updateHiddenFields() {
+  document.getElementById('h-company-size').value = getChipSelections('size');
+  document.getElementById('h-why-training').value = getChipSelections('why');
+  document.getElementById('h-pain-points').value = getChipSelections('pain');
+  document.getElementById('h-gsys').value = getChipSelections('gsys');
+  document.getElementById('h-leadership').value = getChipSelections('lead');
+  document.getElementById('h-staff-levels').value = getChipSelections('who');
+  document.getElementById('h-okr-experience').value = getRadioSelection('okrexp');
+  document.getElementById('h-training-goal').value = getRadioSelection('tgoal');
+  document.getElementById('h-team-understanding').value = getChipSelections('und');
+  document.getElementById('h-previous-failures').value = getChipSelections('fail');
+  document.getElementById('h-real-examples').value = getChipSelections('examples');
+  document.getElementById('h-preferred-mode').value = getChipSelections('mode');
+  document.getElementById('h-preferred-duration').value = getChipSelections('dur');
+  document.getElementById('h-training-format').value = getChipSelections('fmt');
+  document.getElementById('h-post-support').value = getChipSelections('post');
+  document.getElementById('h-budget-range').value = getChipSelections('budget');
+  document.getElementById('h-selected-departments').value = getTagValues('dept-wrap');
+  document.getElementById('h-urgency-level').value = getUrgencyValue('urg-scale');
+}
+
+function getUrgencyValue(id) {
+  const btn = document.querySelector(`#${id} .s-btn.sel`);
+  return btn ? btn.textContent.trim() : '';
+}
+
+function resetWizardState() {
+  document.querySelectorAll('.chip.sel').forEach(el => el.classList.remove('sel'));
+  document.querySelectorAll('.rcard.sel').forEach(el => el.classList.remove('sel'));
+  document.querySelectorAll('#dept-wrap .tag-pill').forEach(el => el.remove());
+  document.querySelectorAll('.s-btn.sel').forEach(el => el.classList.remove('sel'));
+  document.getElementById('notes-count').textContent = '0 / 500';
+}
+
+async function submitForm() {
+  updateHiddenFields();
+  const form = document.getElementById('okr-form');
+  const submitBtn = document.querySelector('.btn-submit');
+  const originalHTML = submitBtn.innerHTML;
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<span class="material-icons-round">sync</span> Sending...';
+
+  try {
+    const response = await fetch('https://formspree.io/f/mjgpqlde', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      const email = document.getElementById('f-email').value;
+      form.reset();
+      resetWizardState();
+      urgSelected = false;
+      goTo('success');
+      document.getElementById('confirm-email').textContent = email || 'your email address';
+    } else {
+      alert('Oops! There was a problem sending your request. Please try again.');
+    }
+  } catch (error) {
+    alert('Error sending form: ' + error.message);
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalHTML;
+  }
+}
+
+/* ── SINGLE-SELECT CHIPS ───────────────────────────── */
+document.querySelectorAll('.chip:not([data-m])').forEach(chip => {
+  chip.addEventListener('click', function () {
+    const g = this.dataset.g;
+    if (!g) return;
+
+    /* Deselect all in group, then select clicked */
+    document.querySelectorAll(`.chip[data-g="${g}"]:not([data-m])`).forEach(c => c.classList.remove('sel'));
+    this.classList.add('sel');
+
+    /* Goal-setting system conditional */
+    if (g === 'gsys') {
+      const el = document.getElementById('cond-gsys');
+      if (el) el.classList.toggle('show', this.dataset.val === 'has');
+    }
+
+    /* Training mode conditional */
+    if (g === 'mode') {
+      const type    = this.dataset.type;
+      const offline = document.getElementById('cond-mode-offline');
+      const online  = document.getElementById('cond-mode-online');
+      if (offline) offline.classList.toggle('show', type === 'offline');
+      if (online)  online.classList.toggle('show',  type === 'online');
+      /* Clear mode error on selection */
+      document.getElementById('e-mode').classList.remove('show');
+    }
+  });
+});
+
+/* ── MULTI-SELECT CHIPS ────────────────────────────── */
+document.querySelectorAll('.chip[data-m]').forEach(chip => {
+  chip.addEventListener('click', function () { this.classList.toggle('sel'); });
+});
+
+/* ── RADIO CARDS ───────────────────────────────────── */
+document.querySelectorAll('.rcard').forEach(card => {
+  card.addEventListener('click', function () {
+    const g = this.dataset.g;
+    document.querySelectorAll(`.rcard[data-g="${g}"]`).forEach(c => c.classList.remove('sel'));
+    this.classList.add('sel');
+    /* Clear training-goal error on selection */
+    if (g === 'tgoal') document.getElementById('e-tgoal').classList.remove('show');
+  });
+});
+
+/* ── URGENCY SCALE ─────────────────────────────────── */
+function setScale(id, btn) {
+  document.querySelectorAll(`#${id} .s-btn`).forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  urgSelected = true;
+  document.getElementById('e-urg').classList.remove('show');
+}
+
+/* ── TAG INPUT ─────────────────────────────────────── */
+function addTag(e, wrapId, inputId) {
+  if (e.key !== 'Enter' && e.key !== ',') return;
+  e.preventDefault();
+  const inp = document.getElementById(inputId);
+  const val = inp.value.trim().replace(/,$/, '');
+  if (!val) return;
+  const wrap = document.getElementById(wrapId);
+  const pill = document.createElement('div');
+  pill.className = 'tag-pill';
+  pill.innerHTML = `${val} <span class="tag-rm" onclick="this.parentElement.remove()">&#x2715;</span>`;
+  wrap.insertBefore(pill, inp);
+  inp.value = '';
+}
+
+/* ── CHARACTER COUNT ───────────────────────────────── */
+const notesEl = document.getElementById('f-notes');
+if (notesEl) {
+  notesEl.addEventListener('input', function () {
+    document.getElementById('notes-count').textContent = this.value.length + ' / 500';
+  });
+}
+
+/* ── CLEAR ERRORS ON INPUT ─────────────────────────── */
+['f-name','f-role','f-company','f-email','f-topgoal','f-pax','f-success'].forEach(id => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.addEventListener('input', function () {
+    this.classList.remove('error');
+    const errEl = document.getElementById('e-' + id.replace('f-', ''));
+    if (errEl) errEl.classList.remove('show');
+  });
+});
+</script>
+</body>
+</html>
