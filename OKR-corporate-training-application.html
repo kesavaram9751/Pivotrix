@@ -517,7 +517,7 @@ input.error, textarea.error { border-bottom-color: var(--error); background: tra
 </nav>
 
 <div class="page">
-  <form id="okr-form" onsubmit="event.preventDefault()">
+  <form id="okr-form" onsubmit="step5Submit(); return false;">
 
   <!-- ── HERO ─────────────────────────────────────────── -->
   <div class="hero">
@@ -564,24 +564,49 @@ input.error, textarea.error { border-bottom-color: var(--error); background: tra
     </div>
   </div>
 
+  <!-- ════ STEP 1 — About You ════ -->
+  <input type="hidden" name="name" id="h-name">
+  <input type="hidden" name="role" id="h-role">
+  <input type="hidden" name="company" id="h-company">
+  <input type="hidden" name="industry" id="h-industry">
+  <input type="hidden" name="email" id="h-email">
+  <input type="hidden" name="phone" id="h-phone">
   <input type="hidden" name="company_size" id="h-company-size">
+
+  <!-- ════ STEP 2 — Why OKRs / What's Broken ════ -->
   <input type="hidden" name="why_training" id="h-why-training">
   <input type="hidden" name="pain_points" id="h-pain-points">
+  <input type="hidden" name="top_goal" id="h-top-goal">
   <input type="hidden" name="goal_setting_system" id="h-gsys">
+  <input type="hidden" name="gsys_detail" id="h-gsys-detail">
+
+  <!-- ════ STEP 3 — Participants & OKR Experience ════ -->
+  <input type="hidden" name="selected_departments" id="h-selected-departments">
+  <input type="hidden" name="participants" id="h-participants">
   <input type="hidden" name="leadership_attendance" id="h-leadership">
   <input type="hidden" name="staff_levels" id="h-staff-levels">
   <input type="hidden" name="okr_experience" id="h-okr-experience">
-  <input type="hidden" name="training_goal" id="h-training-goal">
   <input type="hidden" name="team_understanding" id="h-team-understanding">
   <input type="hidden" name="previous_failures" id="h-previous-failures">
+
+  <!-- ════ STEP 4 — Training Design & Logistics ════ -->
+  <input type="hidden" name="training_goal" id="h-training-goal">
   <input type="hidden" name="use_real_examples" id="h-real-examples">
   <input type="hidden" name="preferred_mode" id="h-preferred-mode">
+  <input type="hidden" name="mode_offline" id="h-mode-offline">
+  <input type="hidden" name="mode_online" id="h-mode-online">
   <input type="hidden" name="preferred_duration" id="h-preferred-duration">
+  <input type="hidden" name="preferred_dates" id="h-preferred-dates">
   <input type="hidden" name="training_format_preferences" id="h-training-format">
   <input type="hidden" name="post_training_support" id="h-post-support">
-  <input type="hidden" name="budget_range" id="h-budget-range">
-  <input type="hidden" name="selected_departments" id="h-selected-departments">
+
+  <!-- ════ STEP 5 — Success Metrics & Final Details ════ -->
+  <input type="hidden" name="success_measurement" id="h-success-measurement">
+  <input type="hidden" name="avoid" id="h-avoid">
+  <input type="hidden" name="past_failures" id="h-past-failures">
   <input type="hidden" name="urgency_level" id="h-urgency-level">
+  <input type="hidden" name="budget_range" id="h-budget-range">
+  <input type="hidden" name="notes" id="h-notes">
 
   <!-- ════════════════════════════════════════
        STEP 1 — About You
@@ -616,8 +641,9 @@ input.error, textarea.error { border-bottom-color: var(--error); background: tra
           <div class="v-msg" id="e-company">Please enter your company name.</div>
         </div>
         <div class="q">
-          <div class="q-lbl">Industry / Sector</div>
+          <div class="q-lbl">Industry / Sector <span class="req">*</span></div>
           <input type="text" id="f-industry" name="industry" placeholder="e.g. Manufacturing, SaaS, Retail" />
+          <div class="v-msg" id="e-industry">Please enter your industry or sector.</div>
         </div>
       </div>
 
@@ -628,19 +654,21 @@ input.error, textarea.error { border-bottom-color: var(--error); background: tra
           <div class="v-msg" id="e-email">Please enter a valid email address.</div>
         </div>
         <div class="q">
-          <div class="q-lbl">WhatsApp / Phone</div>
+          <div class="q-lbl">WhatsApp / Phone <span class="req">*</span></div>
           <input type="tel" id="f-phone" name="phone" placeholder="+91 98XXX XXXXX" />
+          <div class="v-msg" id="e-phone">Please enter a phone number.</div>
         </div>
       </div>
 
       <div class="q">
-        <div class="q-lbl">Company Size</div>
+        <div class="q-lbl">Company Size <span class="req">*</span></div>
         <div class="chips">
           <div class="chip" data-g="size">1–25 employees</div>
           <div class="chip" data-g="size">26–100 employees</div>
           <div class="chip" data-g="size">101–500 employees</div>
           <div class="chip" data-g="size">500+ employees</div>
         </div>
+        <div class="v-msg" id="e-size">Please select your company size.</div>
       </div>
     </div>
 
@@ -677,6 +705,7 @@ input.error, textarea.error { border-bottom-color: var(--error); background: tra
           <div class="chip" data-g="why" data-m="1">Just discovered OKRs and want to learn</div>
           <div class="chip" data-g="why" data-m="1">Other reason</div>
         </div>
+        <div class="v-msg" id="e-why">Please select at least one reason for training.</div>
       </div>
 
       <div class="q">
@@ -692,6 +721,7 @@ input.error, textarea.error { border-bottom-color: var(--error); background: tra
           <div class="chip" data-g="pain" data-m="1">Revenue targets missed repeatedly</div>
           <div class="chip" data-g="pain" data-m="1">Low employee engagement and ownership</div>
         </div>
+        <div class="v-msg" id="e-pain">Please select at least one current pain point.</div>
       </div>
 
       <div class="q">
@@ -702,7 +732,7 @@ input.error, textarea.error { border-bottom-color: var(--error); background: tra
       </div>
 
       <div class="q">
-        <div class="q-lbl">Do you currently use a goal-setting system?</div>
+        <div class="q-lbl">Do you currently use a goal-setting system? <span class="req">*</span></div>
         <div class="chips">
           <div class="chip" data-g="gsys" data-val="none">No system — we run on instinct</div>
           <div class="chip" data-g="gsys" data-val="has">Spreadsheets / Excel</div>
@@ -710,8 +740,10 @@ input.error, textarea.error { border-bottom-color: var(--error); background: tra
           <div class="chip" data-g="gsys" data-val="has">An OKR tool (e.g. Profit.co, Lattice, Betterworks)</div>
           <div class="chip" data-g="gsys" data-val="has">Something else</div>
         </div>
+        <div class="v-msg" id="e-gsys">Please select your current goal-setting system.</div>
         <div class="cond" id="cond-gsys">
           <input type="text" id="f-gsys-detail" name="gsys_detail" placeholder="Name the system and describe the biggest problem with it..." />
+          <div class="v-msg" id="e-gsys-detail">Please describe your current system.</div>
         </div>
       </div>
     </div>
@@ -747,6 +779,7 @@ input.error, textarea.error { border-bottom-color: var(--error); background: tra
             placeholder="e.g. Sales, Engineering, Finance, HR…"
             onkeydown="addTag(event,'dept-wrap','dept-inp')" />
         </div>
+        <div class="v-msg" id="e-dept">Please add at least one participating department.</div>
       </div>
 
       <div class="two-col">
@@ -756,12 +789,13 @@ input.error, textarea.error { border-bottom-color: var(--error); background: tra
           <div class="v-msg" id="e-pax">Please enter the expected number of participants.</div>
         </div>
         <div class="q">
-          <div class="q-lbl">Will leadership attend?</div>
+          <div class="q-lbl">Will leadership attend? <span class="req">*</span></div>
           <div class="chips" style="flex-direction:column;gap:8px">
             <div class="chip" data-g="lead">Yes — leadership will attend all sessions</div>
             <div class="chip" data-g="lead">Opening and key sessions only</div>
             <div class="chip" data-g="lead">No — leadership will not attend</div>
           </div>
+          <div class="v-msg" id="e-lead">Please indicate whether leadership will attend.</div>
         </div>
       </div>
 
@@ -789,7 +823,7 @@ input.error, textarea.error { border-bottom-color: var(--error); background: tra
       </div>
 
       <div class="q">
-        <div class="q-lbl">Overall OKR experience level across the team</div>
+        <div class="q-lbl">Overall OKR experience level across the team <span class="req">*</span></div>
         <div class="rcards">
           <div class="rcard rcard-w" data-g="okrexp">
             <span class="material-icons-round">eco</span>
@@ -812,20 +846,22 @@ input.error, textarea.error { border-bottom-color: var(--error); background: tra
             <div class="r-desc">Running OKRs but need improvement</div>
           </div>
         </div>
+        <div class="v-msg" id="e-okrexp">Please select your team’s OKR experience level.</div>
       </div>
 
       <div class="q" style="margin-top:20px">
-        <div class="q-lbl">Do your teams understand OKRs?</div>
+        <div class="q-lbl">Do your teams understand OKRs? <span class="req">*</span></div>
         <div class="chips">
           <div class="chip chip-w" data-g="und">No — most people have never heard of OKRs</div>
           <div class="chip chip-w" data-g="und">Some awareness but very limited</div>
           <div class="chip chip-w" data-g="und">A few champions, but not the whole team</div>
           <div class="chip chip-w" data-g="und">Most people have a working understanding</div>
         </div>
+        <div class="v-msg" id="e-und">Please select the level of OKR understanding.</div>
       </div>
 
       <div class="q">
-        <div class="q-lbl">If you have tried OKRs before, what went wrong?</div>
+        <div class="q-lbl">If you have tried OKRs before, what went wrong? <span class="req">*</span></div>
         <div class="q-hint">Select all that apply — this helps us anticipate and avoid the same traps</div>
         <div class="chips">
           <div class="chip chip-w" data-g="fail" data-m="1">OKRs were written too vaguely</div>
@@ -837,6 +873,7 @@ input.error, textarea.error { border-bottom-color: var(--error); background: tra
           <div class="chip chip-w" data-g="fail" data-m="1">Low buy-in from the team</div>
           <div class="chip chip-w" data-g="fail" data-m="1">Not applicable — this is our first attempt</div>
         </div>
+        <div class="v-msg" id="e-fail">Please select at least one past OKR failure pattern.</div>
       </div>
     </div>
 
@@ -891,12 +928,13 @@ input.error, textarea.error { border-bottom-color: var(--error); background: tra
       </div>
 
       <div class="q">
-        <div class="q-lbl">Can we use your real business examples during the training?</div>
+        <div class="q-lbl">Can we use your real business examples during the training? <span class="req">*</span></div>
         <div class="chips">
           <div class="chip" data-g="examples">Yes — please use our actual goals and numbers</div>
           <div class="chip" data-g="examples">Yes, but keep sensitive data confidential</div>
           <div class="chip" data-g="examples">No — please use generic examples only</div>
         </div>
+        <div class="v-msg" id="e-examples">Please choose whether real examples may be used.</div>
       </div>
 
       <div class="two-col">
@@ -915,25 +953,28 @@ input.error, textarea.error { border-bottom-color: var(--error); background: tra
             <input type="text" id="f-mode-online" name="mode_online" placeholder="Preferred platform (Zoom, Teams, Google Meet)..." />
           </div>
           <div class="v-msg" id="e-mode">Please select a preferred training mode.</div>
+          <div class="v-msg" id="e-mode-detail">Please provide your preferred location or platform.</div>
         </div>
         <div class="q">
-          <div class="q-lbl">Preferred duration</div>
+          <div class="q-lbl">Preferred duration <span class="req">*</span></div>
           <div class="chips" style="flex-direction:column;gap:8px">
             <div class="chip" data-g="dur">Half day — 4 hours</div>
             <div class="chip" data-g="dur">Full day — 8 hours</div>
             <div class="chip" data-g="dur">2 full days</div>
             <div class="chip" data-g="dur">Multiple sessions over several weeks</div>
           </div>
+          <div class="v-msg" id="e-dur">Please select a preferred duration.</div>
         </div>
       </div>
 
       <div class="q">
-        <div class="q-lbl">Preferred dates or timeline</div>
+        <div class="q-lbl">Preferred dates or timeline <span class="req">*</span></div>
         <input type="text" id="f-dates" name="preferred_dates" placeholder="e.g. Last week of June 2025, or anytime in Q3 2025" />
+        <div class="v-msg" id="e-dates">Please enter your preferred date or timeline.</div>
       </div>
 
       <div class="q">
-        <div class="q-lbl">Training format preferences (select all that apply)</div>
+        <div class="q-lbl">Training format preferences (select all that apply) <span class="req">*</span></div>
         <div class="chips">
           <div class="chip" data-g="fmt" data-m="1">Hands-on exercises using our real goals</div>
           <div class="chip" data-g="fmt" data-m="1">Department-wise breakout sessions</div>
@@ -942,10 +983,11 @@ input.error, textarea.error { border-bottom-color: var(--error); background: tra
           <div class="chip" data-g="fmt" data-m="1">Leadership keynote or kickoff session</div>
           <div class="chip" data-g="fmt" data-m="1">30-day post-training follow-up call</div>
         </div>
+        <div class="v-msg" id="e-fmt">Please select at least one training format preference.</div>
       </div>
 
       <div class="q">
-        <div class="q-lbl">Do you need post-training support?</div>
+        <div class="q-lbl">Do you need post-training support? <span class="req">*</span></div>
         <div class="chips">
           <div class="chip" data-g="post" data-m="1">Monthly OKR review facilitation</div>
           <div class="chip" data-g="post" data-m="1">One-on-one OKR coaching for leaders</div>
@@ -953,6 +995,7 @@ input.error, textarea.error { border-bottom-color: var(--error); background: tra
           <div class="chip" data-g="post" data-m="1">90-day progress audit and recalibration</div>
           <div class="chip" data-g="post" data-m="1">No post-training support needed</div>
         </div>
+        <div class="v-msg" id="e-post">Please select at least one post-training support option.</div>
       </div>
     </div>
 
@@ -987,15 +1030,17 @@ input.error, textarea.error { border-bottom-color: var(--error); background: tra
       </div>
 
       <div class="q">
-        <div class="q-lbl">What should NOT happen in this training?</div>
+        <div class="q-lbl">What should NOT happen in this training? <span class="req">*</span></div>
         <div class="q-hint">Helps us avoid cultural sensitivities, bad past experiences, or misaligned approaches</div>
         <textarea id="f-avoid" name="avoid" rows="2" placeholder="e.g. Do not make it feel like a performance appraisal. Do not skip the operations team. Avoid excessive theory and jargon..."></textarea>
+        <div class="v-msg" id="e-avoid">Please tell us what should not happen during training.</div>
       </div>
 
       <div class="q">
-        <div class="q-lbl">Have any similar training programmes or change initiatives failed before?</div>
+        <div class="q-lbl">Have any similar training programmes or change initiatives failed before? <span class="req">*</span></div>
         <div class="q-hint">Honest answers help us design a programme that avoids the same pitfalls</div>
         <textarea id="f-pastfail" name="past_failures" rows="2" placeholder="e.g. We ran a Balanced Scorecard programme in 2022. Leadership lost interest after the first month and the initiative collapsed..."></textarea>
+        <div class="v-msg" id="e-pastfail">Please describe any past failures or challenges.</div>
       </div>
 
       <hr class="divider" />
@@ -1020,7 +1065,7 @@ input.error, textarea.error { border-bottom-color: var(--error); background: tra
       </div>
 
       <div class="q">
-        <div class="q-lbl">Budget range you have in mind:</div>
+        <div class="q-lbl">Budget range you have in mind: <span class="req">*</span></div>
         <div class="chips">
           <div class="chip" data-g="budget">Under ₹1 Lakh</div>
           <div class="chip" data-g="budget">₹1 – ₹3 Lakhs</div>
@@ -1028,13 +1073,15 @@ input.error, textarea.error { border-bottom-color: var(--error); background: tra
           <div class="chip" data-g="budget">Above ₹7 Lakhs</div>
           <div class="chip" data-g="budget">Open — send me a proposal</div>
         </div>
+        <div class="v-msg" id="e-budget">Please select your budget range.</div>
       </div>
 
       <div class="q">
-        <div class="q-lbl">Anything else you would like us to know?</div>
+        <div class="q-lbl">Anything else you would like us to know? <span class="req">*</span></div>
         <div class="q-hint">Special requirements, concerns, questions for Pivotrix, or context about your team culture</div>
         <textarea id="f-notes" name="notes" rows="3" maxlength="500" placeholder="e.g. Our team is culturally averse to scoring. We have a mix of Tamil and English speakers. We'd like Sasi to personally facilitate..."></textarea>
         <div class="char-count" id="notes-count">0 / 500</div>
+        <div class="v-msg" id="e-notes">Please share any additional context or requirements.</div>
       </div>
 
       <div class="info-note">
@@ -1125,43 +1172,116 @@ function check(fieldId, errId, testFn) {
 function isEmail(v)   { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
 function notEmpty(v)  { return v.length > 0; }
 function isPositive(v){ return parseInt(v) > 0; }
+function isPhone(v)   { return v.length > 5; }
+
+function hasSelection(group, errId) {
+  const ok = !!document.querySelector(`.chip[data-g="${group}"].sel, .rcard[data-g="${group}"].sel`);
+  const err = document.getElementById(errId);
+  if (err) err.classList.toggle('show', !ok);
+  return ok;
+}
+
+function hasTagSelection(wrapId, errId) {
+  const ok = document.querySelectorAll(`#${wrapId} .tag-pill`).length > 0;
+  const err = document.getElementById(errId);
+  if (err) err.classList.toggle('show', !ok);
+  return ok;
+}
+
+function requireConditionalField(fieldId, condition, errId) {
+  if (!condition) {
+    const err = document.getElementById(errId);
+    if (err) err.classList.remove('show');
+    return true;
+  }
+  const el = document.getElementById(fieldId);
+  const ok = el && notEmpty(el.value.trim());
+  const err = document.getElementById(errId);
+  if (err) err.classList.toggle('show', !ok);
+  return ok;
+}
+
+function getSelectedChipValue(group) {
+  const chip = document.querySelector(`.chip[data-g="${group}"].sel`);
+  return chip ? chip.dataset.val || chip.textContent.trim() : '';
+}
+
+function getSelectedChip(group) {
+  return document.querySelector(`.chip[data-g="${group}"].sel`);
+}
+
+function getSelectedChipType(group) {
+  const chip = getSelectedChip(group);
+  return chip ? (chip.dataset.type || '') : '';
+}
 
 /* ── STEP VALIDATORS ───────────────────────────────── */
 function step1Next() {
   const ok = [
-    check('f-name',    'e-name',    notEmpty),
-    check('f-role',    'e-role',    notEmpty),
-    check('f-company', 'e-company', notEmpty),
-    check('f-email',   'e-email',   isEmail),
+    check('f-name',     'e-name',     notEmpty),
+    check('f-role',     'e-role',     notEmpty),
+    check('f-company',  'e-company',  notEmpty),
+    check('f-industry', 'e-industry', notEmpty),
+    check('f-email',    'e-email',    isEmail),
+    check('f-phone',    'e-phone',    isPhone),
+    hasSelection('size', 'e-size')
   ].every(Boolean);
   if (ok) goTo(2); else window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function step2Next() {
-  if (check('f-topgoal', 'e-topgoal', notEmpty)) goTo(3);
+  const ok = [
+    hasSelection('why', 'e-why'),
+    hasSelection('pain', 'e-pain'),
+    check('f-topgoal', 'e-topgoal', notEmpty),
+    hasSelection('gsys', 'e-gsys'),
+    requireConditionalField('f-gsys-detail', getSelectedChipValue('gsys') === 'has', 'e-gsys-detail')
+  ].every(Boolean);
+  if (ok) goTo(3); else window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function step3Next() {
-  if (check('f-pax', 'e-pax', isPositive)) goTo(4);
+  const ok = [
+    hasTagSelection('dept-wrap', 'e-dept'),
+    check('f-pax', 'e-pax', isPositive),
+    hasSelection('lead', 'e-lead'),
+    hasSelection('who', 'e-who'),
+    hasSelection('okrexp', 'e-okrexp'),
+    hasSelection('und', 'e-und'),
+    hasSelection('fail', 'e-fail')
+  ].every(Boolean);
+  if (ok) goTo(4); else window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function step4Next() {
-  /* Require training goal (rcard) and mode (chip) */
-  const goalSel = document.querySelector('.rcard[data-g="tgoal"].sel');
-  const modeSel = document.querySelector('.chip[data-g="mode"].sel');
-  const goalErr = document.getElementById('e-tgoal');
-  const modeErr = document.getElementById('e-mode');
-  goalErr.classList.toggle('show', !goalSel);
-  modeErr.classList.toggle('show', !modeSel);
-  if (goalSel && modeSel) goTo(5); else window.scrollTo({ top: 0, behavior: 'smooth' });
+  const modeType = getSelectedChipType('mode');
+  const ok = [
+    hasSelection('tgoal', 'e-tgoal'),
+    hasSelection('examples', 'e-examples'),
+    hasSelection('mode', 'e-mode'),
+    requireConditionalField('f-mode-offline', modeType === 'offline', 'e-mode-detail'),
+    requireConditionalField('f-mode-online', modeType === 'online', 'e-mode-detail'),
+    hasSelection('dur', 'e-dur'),
+    check('f-dates', 'e-dates', notEmpty),
+    hasSelection('fmt', 'e-fmt'),
+    hasSelection('post', 'e-post')
+  ].every(Boolean);
+  if (ok) goTo(5); else window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 async function step5Submit() {
-  const a = check('f-success', 'e-success', notEmpty);
+  const successOk = check('f-success', 'e-success', notEmpty);
+  const avoidOk   = check('f-avoid', 'e-avoid', notEmpty);
+  const pastfailOk = check('f-pastfail', 'e-pastfail', notEmpty);
+  const budgetOk  = hasSelection('budget', 'e-budget');
+  const notesOk   = check('f-notes', 'e-notes', notEmpty);
   document.getElementById('e-urg').classList.toggle('show', !urgSelected);
-  if (a && urgSelected) {
+
+  if (successOk && urgSelected && avoidOk && pastfailOk && budgetOk && notesOk) {
     await submitForm();
-  } else window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }
 
 function getChipSelections(group, delimiter = ', ') {
@@ -1178,25 +1298,94 @@ function getTagValues(wrapId) {
   return pills.map(pill => pill.textContent.replace('×', '').trim()).filter(Boolean).join(', ');
 }
 
+function buildSubmissionFields() {
+  return [
+    ['name', document.getElementById('f-name').value.trim()],
+    ['role', document.getElementById('f-role').value.trim()],
+    ['company', document.getElementById('f-company').value.trim()],
+    ['industry', document.getElementById('f-industry').value.trim()],
+    ['email', document.getElementById('f-email').value.trim()],
+    ['phone', document.getElementById('f-phone').value.trim()],
+    ['company_size', getChipSelections('size')],
+    ['why_training', getChipSelections('why')],
+    ['pain_points', getChipSelections('pain')],
+    ['top_goal', document.getElementById('f-topgoal').value.trim()],
+    ['goal_setting_system', getChipSelections('gsys')],
+    ['gsys_detail', document.getElementById('f-gsys-detail').value.trim()],
+    ['selected_departments', getTagValues('dept-wrap')],
+    ['participants', document.getElementById('f-pax').value.trim()],
+    ['leadership_attendance', getChipSelections('lead')],
+    ['staff_levels', getChipSelections('who')],
+    ['okr_experience', getRadioSelection('okrexp')],
+    ['team_understanding', getChipSelections('und')],
+    ['previous_failures', getChipSelections('fail')],
+    ['training_goal', getRadioSelection('tgoal')],
+    ['use_real_examples', getChipSelections('examples')],
+    ['preferred_mode', getChipSelections('mode')],
+    ['mode_offline', document.getElementById('f-mode-offline').value.trim()],
+    ['mode_online', document.getElementById('f-mode-online').value.trim()],
+    ['preferred_duration', getChipSelections('dur')],
+    ['preferred_dates', document.getElementById('f-dates').value.trim()],
+    ['training_format_preferences', getChipSelections('fmt')],
+    ['post_training_support', getChipSelections('post')],
+    ['success_measurement', document.getElementById('f-success').value.trim()],
+    ['avoid', document.getElementById('f-avoid').value.trim()],
+    ['past_failures', document.getElementById('f-pastfail').value.trim()],
+    ['urgency_level', getUrgencyValue('urg-scale')],
+    ['budget_range', getChipSelections('budget')],
+    ['notes', document.getElementById('f-notes').value.trim()]
+  ];
+}
+
 function updateHiddenFields() {
+  buildSubmissionFields().forEach(([name, value]) => {
+    const hiddenField = document.querySelector(`input[type="hidden"][name="${name}"]`);
+    if (hiddenField) hiddenField.value = value;
+  });
+  return;
+  /* ════ STEP 1 — About You ════ */
+  document.getElementById('h-name').value = document.getElementById('f-name').value.trim();
+  document.getElementById('h-role').value = document.getElementById('f-role').value.trim();
+  document.getElementById('h-company').value = document.getElementById('f-company').value.trim();
+  document.getElementById('h-industry').value = document.getElementById('f-industry').value.trim();
+  document.getElementById('h-email').value = document.getElementById('f-email').value.trim();
+  document.getElementById('h-phone').value = document.getElementById('f-phone').value.trim();
   document.getElementById('h-company-size').value = getChipSelections('size');
+
+  /* ════ STEP 2 — Why OKRs / What's Broken ════ */
   document.getElementById('h-why-training').value = getChipSelections('why');
   document.getElementById('h-pain-points').value = getChipSelections('pain');
+  document.getElementById('h-top-goal').value = document.getElementById('f-topgoal').value.trim();
   document.getElementById('h-gsys').value = getChipSelections('gsys');
+  document.getElementById('h-gsys-detail').value = document.getElementById('f-gsys-detail').value.trim();
+
+  /* ════ STEP 3 — Participants & OKR Experience ════ */
+  document.getElementById('h-selected-departments').value = getTagValues('dept-wrap');
+  document.getElementById('h-participants').value = document.getElementById('f-pax').value.trim();
   document.getElementById('h-leadership').value = getChipSelections('lead');
   document.getElementById('h-staff-levels').value = getChipSelections('who');
   document.getElementById('h-okr-experience').value = getRadioSelection('okrexp');
-  document.getElementById('h-training-goal').value = getRadioSelection('tgoal');
   document.getElementById('h-team-understanding').value = getChipSelections('und');
   document.getElementById('h-previous-failures').value = getChipSelections('fail');
+
+  /* ════ STEP 4 — Training Design & Logistics ════ */
+  document.getElementById('h-training-goal').value = getRadioSelection('tgoal');
   document.getElementById('h-real-examples').value = getChipSelections('examples');
   document.getElementById('h-preferred-mode').value = getChipSelections('mode');
+  document.getElementById('h-mode-offline').value = document.getElementById('f-mode-offline').value.trim();
+  document.getElementById('h-mode-online').value = document.getElementById('f-mode-online').value.trim();
   document.getElementById('h-preferred-duration').value = getChipSelections('dur');
+  document.getElementById('h-preferred-dates').value = document.getElementById('f-dates').value.trim();
   document.getElementById('h-training-format').value = getChipSelections('fmt');
   document.getElementById('h-post-support').value = getChipSelections('post');
-  document.getElementById('h-budget-range').value = getChipSelections('budget');
-  document.getElementById('h-selected-departments').value = getTagValues('dept-wrap');
+
+  /* ════ STEP 5 — Success Metrics & Final Details ════ */
+  document.getElementById('h-success-measurement').value = document.getElementById('f-success').value.trim();
+  document.getElementById('h-avoid').value = document.getElementById('f-avoid').value.trim();
+  document.getElementById('h-past-failures').value = document.getElementById('f-pastfail').value.trim();
   document.getElementById('h-urgency-level').value = getUrgencyValue('urg-scale');
+  document.getElementById('h-budget-range').value = getChipSelections('budget');
+  document.getElementById('h-notes').value = document.getElementById('f-notes').value.trim();
 }
 
 function getUrgencyValue(id) {
@@ -1210,20 +1399,27 @@ function resetWizardState() {
   document.querySelectorAll('#dept-wrap .tag-pill').forEach(el => el.remove());
   document.querySelectorAll('.s-btn.sel').forEach(el => el.classList.remove('sel'));
   document.getElementById('notes-count').textContent = '0 / 500';
+  document.getElementById('f-gsys-detail').value = '';
+  document.getElementById('f-mode-offline').value = '';
+  document.getElementById('f-mode-online').value = '';
 }
 
 async function submitForm() {
-  updateHiddenFields();
   const form = document.getElementById('okr-form');
+  const orderedFields = buildSubmissionFields();
+  updateHiddenFields();
   const submitBtn = document.querySelector('.btn-submit');
   const originalHTML = submitBtn.innerHTML;
   submitBtn.disabled = true;
   submitBtn.innerHTML = '<span class="material-icons-round">sync</span> Sending...';
 
   try {
+    const payload = new FormData();
+    orderedFields.forEach(([name, value]) => payload.append(name, value));
+
     const response = await fetch('https://formspree.io/f/mjgpqlde', {
       method: 'POST',
-      body: new FormData(form),
+      body: payload,
       headers: { 'Accept': 'application/json' }
     });
 
@@ -1246,6 +1442,27 @@ async function submitForm() {
 }
 
 /* ── SINGLE-SELECT CHIPS ───────────────────────────── */
+function syncRequiredFields() {
+  [
+    'f-name',
+    'f-role',
+    'f-company',
+    'f-industry',
+    'f-email',
+    'f-phone',
+    'f-topgoal',
+    'f-pax',
+    'f-dates',
+    'f-success',
+    'f-avoid',
+    'f-pastfail',
+    'f-notes'
+  ].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.required = true;
+  });
+}
+
 document.querySelectorAll('.chip:not([data-m])').forEach(chip => {
   chip.addEventListener('click', function () {
     const g = this.dataset.g;
@@ -1254,6 +1471,9 @@ document.querySelectorAll('.chip:not([data-m])').forEach(chip => {
     /* Deselect all in group, then select clicked */
     document.querySelectorAll(`.chip[data-g="${g}"]:not([data-m])`).forEach(c => c.classList.remove('sel'));
     this.classList.add('sel');
+
+    const err = document.getElementById('e-' + g);
+    if (err) err.classList.remove('show');
 
     /* Goal-setting system conditional */
     if (g === 'gsys') {
@@ -1268,15 +1488,19 @@ document.querySelectorAll('.chip:not([data-m])').forEach(chip => {
       const online  = document.getElementById('cond-mode-online');
       if (offline) offline.classList.toggle('show', type === 'offline');
       if (online)  online.classList.toggle('show',  type === 'online');
-      /* Clear mode error on selection */
-      document.getElementById('e-mode').classList.remove('show');
+      const detailErr = document.getElementById('e-mode-detail');
+      if (detailErr) detailErr.classList.remove('show');
     }
   });
 });
 
 /* ── MULTI-SELECT CHIPS ────────────────────────────── */
 document.querySelectorAll('.chip[data-m]').forEach(chip => {
-  chip.addEventListener('click', function () { this.classList.toggle('sel'); });
+  chip.addEventListener('click', function () {
+    this.classList.toggle('sel');
+    const err = document.getElementById('e-' + this.dataset.g);
+    if (err && document.querySelector(`.chip[data-g="${this.dataset.g}"].sel`)) err.classList.remove('show');
+  });
 });
 
 /* ── RADIO CARDS ───────────────────────────────────── */
@@ -1285,8 +1509,8 @@ document.querySelectorAll('.rcard').forEach(card => {
     const g = this.dataset.g;
     document.querySelectorAll(`.rcard[data-g="${g}"]`).forEach(c => c.classList.remove('sel'));
     this.classList.add('sel');
-    /* Clear training-goal error on selection */
-    if (g === 'tgoal') document.getElementById('e-tgoal').classList.remove('show');
+    const err = document.getElementById('e-' + g);
+    if (err) err.classList.remove('show');
   });
 });
 
@@ -1311,9 +1535,14 @@ function addTag(e, wrapId, inputId) {
   pill.innerHTML = `${val} <span class="tag-rm" onclick="this.parentElement.remove()">&#x2715;</span>`;
   wrap.insertBefore(pill, inp);
   inp.value = '';
+
+  const err = document.getElementById('e-dept');
+  if (err) err.classList.remove('show');
 }
 
 /* ── CHARACTER COUNT ───────────────────────────────── */
+syncRequiredFields();
+
 const notesEl = document.getElementById('f-notes');
 if (notesEl) {
   notesEl.addEventListener('input', function () {
